@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sanctuaire des Prières — Prières, Recueils & Rituels Catholiques</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23fffdf7'/%3E%3Crect x='42' y='18' width='16' height='64' rx='3' fill='%23b6903a'/%3E%3Crect x='22' y='36' width='56' height='16' rx='3' fill='%23b6903a'/%3E%3C/svg%3E" />
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7" defer></script>
   <style>
@@ -155,6 +156,19 @@
     .newsletter-input::placeholder{color:var(--creme2);opacity:.4;font-style:italic;}
     .newsletter-btn{background:var(--or);color:var(--nuit);padding:1rem 1.8rem;border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:background .25s;}
     .newsletter-btn:hover{background:var(--or-clair);}
+
+    /* MODAL LÉGAL */
+    .legal-modal{background:var(--nuit2);border:1px solid rgba(201,168,76,.3);max-width:720px;width:100%;position:relative;animation:modalApparaitre .35s ease-out;max-height:88vh;display:flex;flex-direction:column;}
+    .legal-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,.2);flex-wrap:wrap;}
+    .legal-tab{flex:1;min-width:150px;background:none;border:none;padding:1.1rem 1rem;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--creme2);opacity:.6;cursor:pointer;border-bottom:2px solid transparent;transition:all .25s;}
+    .legal-tab.actif{opacity:1;color:var(--or-sombre);border-bottom-color:var(--or);}
+    .legal-corps{padding:2rem 2.2rem;overflow-y:auto;}
+    .legal-corps h4{font-family:'Cinzel',serif;font-size:1.15rem;color:var(--blanc);margin:1.4rem 0 .6rem;}
+    .legal-corps h4:first-child{margin-top:0;}
+    .legal-corps p,.legal-corps li{font-family:'IM Fell English',serif;font-style:italic;font-size:.95rem;line-height:1.75;color:var(--creme2);margin-bottom:.7rem;}
+    .legal-corps ul{padding-left:1.4rem;margin-bottom:.7rem;}
+    .legal-corps strong{color:var(--or-sombre);font-style:normal;}
+    .legal-maj{font-size:.78rem;opacity:.5;margin-bottom:1.2rem;}
 
     /* MODAL PRODUIT (multi-étapes) */
     .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(36,26,8,.4);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:2rem;}
@@ -551,9 +565,9 @@
         <div class="footer-titre-col">Contact</div>
         <ul class="footer-liens">
           <li><a href="mailto:contact@sanctuaire-des-prieres.fr">✉ Nous écrire</a></li>
-          <li><a href="#">Conditions d'utilisation</a></li>
-          <li><a href="#">Politique de confidentialité</a></li>
-          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#" onclick="ouvrirLegal('cgu');return false;">Conditions d'utilisation</a></li>
+          <li><a href="#" onclick="ouvrirLegal('conf');return false;">Politique de confidentialité</a></li>
+          <li><a href="#" onclick="ouvrirLegal('mentions');return false;">Mentions légales</a></li>
         </ul>
       </div>
     </div>
@@ -731,6 +745,106 @@
         <div class="paiement-box" id="confirmDonDetails" style="text-align:left;"></div>
         <button class="btn-ap sec" style="margin-top:1.2rem;" onclick="fermerModalDon()">Fermer</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL LÉGAL -->
+<div class="modal-overlay" id="legalModalOverlay" onclick="fermerLegalClic(event)">
+  <div class="legal-modal">
+    <button class="modal-close" onclick="fermerLegal()">✕</button>
+    <div class="legal-tabs">
+      <button class="legal-tab actif" id="ltab-cgu" onclick="ouvrirLegal('cgu')">Conditions d'utilisation</button>
+      <button class="legal-tab" id="ltab-conf" onclick="ouvrirLegal('conf')">Confidentialité</button>
+      <button class="legal-tab" id="ltab-mentions" onclick="ouvrirLegal('mentions')">Mentions légales</button>
+    </div>
+    <div class="legal-corps">
+
+      <!-- CGU -->
+      <div class="legal-contenu" id="lcontent-cgu">
+        <p class="legal-maj">Dernière mise à jour : juillet 2026</p>
+
+        <h4>1. Objet</h4>
+        <p>Les présentes conditions d'utilisation régissent l'accès et l'usage du site <strong>Sanctuaire des Prières</strong> (le « Site »), édité par <strong>BSSD AGENCY</strong>, ainsi que les prières, recueils, rituels et contenus numériques qui y sont proposés (le « Contenu »).</p>
+
+        <h4>2. Contenus gratuits</h4>
+        <p>Certaines prières sont mises à disposition <strong>gratuitement</strong>, en échange d'un prénom, nom et e-mail permettant l'envoi du PDF correspondant. Aucun paiement n'est requis pour ces contenus.</p>
+
+        <h4>3. Contenus payants</h4>
+        <p>Certains recueils et rituels sont proposés à titre <strong>payant</strong>, avec un prix affiché en euros (€) ou en francs CFA (FCFA) selon la devise choisie. Le paiement est traité de façon sécurisée par notre prestataire <strong>FedaPay</strong>. Après confirmation du paiement, le contenu numérique est mis à disposition immédiatement, par téléchargement direct ou par envoi à l'adresse e-mail communiquée.</p>
+        <p>Les contenus proposés sur le Site étant des fichiers numériques accessibles immédiatement après confirmation de la commande, le droit de rétractation ne s'applique pas dès lors que le téléchargement a débuté avec l'accord exprès du client.</p>
+
+        <h4>4. Dons</h4>
+        <p>Le Site propose également un module de don volontaire, indépendant de toute commande. Les dons sont versés librement, à titre de soutien au ministère, et ne donnent lieu à aucune contrepartie ni remboursement, sauf erreur manifeste de paiement.</p>
+
+        <h4>5. Usage des contenus</h4>
+        <p>Les prières, recueils et rituels téléchargés sont destinés à un <strong>usage personnel et privé</strong>. Toute reproduction, revente, redistribution publique ou modification sans autorisation écrite de BSSD AGENCY est interdite.</p>
+
+        <h4>6. Responsabilité</h4>
+        <p>Le Site s'efforce d'assurer une disponibilité continue, sans garantie absolue. BSSD AGENCY ne saurait être tenu responsable d'une interruption temporaire du service, d'un dysfonctionnement technique indépendant de sa volonté, ou d'un usage inapproprié des contenus par un tiers.</p>
+
+        <h4>7. Modification des conditions</h4>
+        <p>BSSD AGENCY se réserve le droit de modifier les présentes conditions à tout moment. La version en vigueur est celle publiée sur le Site à la date de consultation.</p>
+
+        <h4>8. Droit applicable</h4>
+        <p>Les présentes conditions sont soumises au droit béninois. Tout litige relève, à défaut de règlement amiable, de la compétence des tribunaux de Cotonou (Bénin).</p>
+      </div>
+
+      <!-- CONFIDENTIALITÉ -->
+      <div class="legal-contenu" id="lcontent-conf" style="display:none;">
+        <p class="legal-maj">Dernière mise à jour : juillet 2026</p>
+
+        <h4>1. Données collectées</h4>
+        <p>Lorsque vous recevez une prière gratuite, achetez un recueil, ou effectuez un don, nous collectons : prénom, nom, adresse e-mail, et — de façon facultative — un numéro de téléphone.</p>
+
+        <h4>2. Finalité</h4>
+        <p>Ces données sont utilisées exclusivement pour : vous transmettre le contenu demandé, traiter et confirmer votre paiement ou votre don, et vous contacter en cas de besoin lié à votre demande. Elles ne sont <strong>jamais revendues</strong> à des tiers à des fins commerciales.</p>
+
+        <h4>3. Destinataires</h4>
+        <p>Vos données sont traitées par BSSD AGENCY et transitent, selon le cas, par nos prestataires techniques : <strong>Google Firebase</strong> (hébergement de la base de données), <strong>FedaPay</strong> (traitement des paiements et dons) et <strong>Vercel</strong> (hébergement du site). Chacun de ces prestataires applique ses propres mesures de sécurité.</p>
+
+        <h4>4. Conservation</h4>
+        <p>Les données sont conservées le temps nécessaire à l'accomplissement des finalités décrites ci-dessus, puis peuvent être supprimées sur simple demande.</p>
+
+        <h4>5. Cookies et stockage local</h4>
+        <p>Le Site utilise le stockage local de votre navigateur (localStorage) à des fins techniques uniquement (mise en cache du catalogue), et non à des fins publicitaires ou de traçage. Aucun cookie publicitaire tiers n'est utilisé.</p>
+
+        <h4>6. Vos droits</h4>
+        <p>Conformément aux principes du Règlement Général sur la Protection des Données (RGPD) pour nos visiteurs européens, et à la loi béninoise n°2017-20 relative à la protection des données à caractère personnel, vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données. Pour exercer ces droits, contactez-nous à <strong>bssdsociete@gmail.com</strong>.</p>
+
+        <h4>7. Sécurité</h4>
+        <p>Les paiements ne sont jamais traités ni stockés directement par le Site : ils sont intégralement gérés par FedaPay, prestataire de paiement sécurisé.</p>
+      </div>
+
+      <!-- MENTIONS LÉGALES -->
+      <div class="legal-contenu" id="lcontent-mentions" style="display:none;">
+        <p class="legal-maj">Dernière mise à jour : juillet 2026</p>
+
+        <h4>Éditeur du site</h4>
+        <p><strong>BSSD AGENCY</strong><br/>
+        Cotonou, Bénin<br/>
+        E-mail : <strong>bssdsociete@gmail.com</strong><br/>
+        WhatsApp : +229 94 17 36 08</p>
+
+        <h4>Directeur de la publication</h4>
+        <p>BSSD AGENCY, représentée par son responsable légal.</p>
+
+        <h4>Hébergement du site</h4>
+        <p>Vercel Inc. — États-Unis<br/>Informations légales : <a href="https://vercel.com/legal" target="_blank" style="color:var(--or);">vercel.com/legal</a></p>
+
+        <h4>Hébergement des données</h4>
+        <p>Google Firebase (Google LLC) — pour le stockage sécurisé des commandes, téléchargements et dons.</p>
+
+        <h4>Prestataire de paiement</h4>
+        <p>FedaPay — solution de paiement sécurisée pour l'Afrique de l'Ouest et l'international. <a href="https://fedapay.com" target="_blank" style="color:var(--or);">fedapay.com</a></p>
+
+        <h4>Propriété intellectuelle</h4>
+        <p>L'ensemble des textes, prières, recueils, visuels et éléments graphiques du Site sont la propriété de BSSD AGENCY, sauf mention contraire, et sont protégés par le droit d'auteur. Toute reproduction non autorisée est interdite.</p>
+
+        <h4>Contact</h4>
+        <p>Pour toute question relative au Site, écrivez à <strong>bssdsociete@gmail.com</strong>.</p>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1292,7 +1406,20 @@ function allerEtape(n){
 }
 function fermerModal(){document.getElementById('modalOverlay').classList.remove('ouvert');document.body.style.overflow='';}
 function fermerModalClic(e){if(e.target===document.getElementById('modalOverlay'))fermerModal();}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){fermerModal();fermerModalDon();fermerAdmin();fermerLogin();}});
+
+function ouvrirLegal(tab){
+  document.getElementById('legalModalOverlay').classList.add('ouvert');
+  document.body.style.overflow='hidden';
+  ['cgu','conf','mentions'].forEach(t=>{
+    document.getElementById('ltab-'+t).classList.toggle('actif',t===tab);
+    document.getElementById('lcontent-'+t).style.display=(t===tab)?'block':'none';
+  });
+  document.querySelector('.legal-corps').scrollTop=0;
+}
+function fermerLegal(){document.getElementById('legalModalOverlay').classList.remove('ouvert');document.body.style.overflow='';}
+function fermerLegalClic(e){if(e.target===document.getElementById('legalModalOverlay'))fermerLegal();}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){fermerModal();fermerModalDon();fermerLegal();fermerAdmin();fermerLogin();}});
 
 /* =========================================================
    RÉCEPTION GRATUITE DU PDF / ACHAT PAYANT
