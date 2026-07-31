@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanctuaire des Prières — Prières, Recueils & Rituels Catholiques</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7" defer></script>
+  <style>
+    :root {
+      --or:#b6903a; --or-clair:#ddbb70; --or-sombre:#8a6820;
+      --fond:#fffdf7; --fond2:#faf4e6; --fond3:#f4ebd3;
+      --nuit:#241a08; --nuit2:#faf4e6; --nuit3:#f4ebd3;
+      --bordeaux:#8a6820; --bordeaux2:#6b4f18;
+      --creme:#3a2c18; --creme2:#5c4a30;
+      --texte:#2a1a0a; --blanc:#201607;
+      --sur-fonce:#fdf8ec;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Cormorant Garamond',Georgia,serif;background:var(--fond);color:var(--creme);overflow-x:hidden;}
+    ::-webkit-scrollbar{width:6px;}
+    ::-webkit-scrollbar-track{background:var(--nuit2);}
+    ::-webkit-scrollbar-thumb{background:var(--or-sombre);border-radius:3px;}
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+    .section-titre{font-family:'Cinzel',serif;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--or);text-align:center;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+    .section-sous-titre{font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);text-align:center;font-size:1.1rem;margin-bottom:3.5rem;opacity:.8;}
+    .separateur{display:flex;align-items:center;justify-content:center;gap:.8rem;margin:1rem 0 2rem;}
+    .separateur span{display:block;height:1px;width:80px;background:var(--or);opacity:.5;}
+    .separateur svg{fill:var(--or);opacity:.8;width:18px;height:18px;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,box-shadow .4s;}
+    nav.scrolled{background:rgba(255,253,247,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(201,168,76,.25);}
+    .nav-logo{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.15em;color:var(--or);text-decoration:none;display:flex;align-items:center;gap:.6rem;}
+    .nav-logo .croix{font-size:1.3rem;}
+    .nav-liens{display:flex;gap:2rem;list-style:none;}
+    .nav-liens a{font-family:'Cormorant Garamond',serif;font-size:.95rem;letter-spacing:.08em;color:var(--creme2);text-decoration:none;transition:color .25s;position:relative;}
+    .nav-liens a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+    .nav-liens a:hover{color:var(--or);}
+    .nav-liens a:hover::after{transform:scaleX(1);}
+    .nav-cta{background:transparent;border:1px solid var(--or);color:var(--or);padding:.45rem 1.2rem;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;cursor:pointer;transition:background .25s,color .25s;}
+    .nav-cta:hover{background:var(--or);color:var(--nuit);}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+    .burger span{display:block;width:24px;height:1px;background:var(--or);transition:.3s;}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.22) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 20% 80%,rgba(201,168,76,.12) 0%,transparent 60%),linear-gradient(180deg,#fffdf7 0%,#faf3e0 50%,#fffdf7 100%);}
+    .etoiles{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+    .etoile{position:absolute;background:var(--or-clair);border-radius:50%;animation:scintille var(--d,3s) var(--del,0s) infinite ease-in-out;opacity:0;}
+    @keyframes scintille{0%,100%{opacity:0;transform:scale(.5);}50%{opacity:var(--op,.6);transform:scale(1);}}
+    .hero-cadre{position:absolute;inset:2rem;border:1px solid rgba(201,168,76,.15);pointer-events:none;}
+    .hero-cadre::before,.hero-cadre::after{content:'✦';position:absolute;color:var(--or);opacity:.5;font-size:1.2rem;}
+    .hero-cadre::before{top:-.7rem;left:50%;transform:translateX(-50%);}
+    .hero-cadre::after{bottom:-.7rem;left:50%;transform:translateX(-50%);}
+    .hero-contenu{position:relative;z-index:2;max-width:850px;padding:2rem;animation:apparaitre 1.4s ease-out forwards;opacity:0;}
+    @keyframes apparaitre{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    .hero-eyebrow{font-family:'IM Fell English',serif;font-style:italic;font-size:.9rem;letter-spacing:.35em;color:var(--or);text-transform:uppercase;margin-bottom:1.5rem;animation:apparaitre 1.4s .2s ease-out forwards;opacity:0;}
+    .hero-titre{font-family:'Cinzel',serif;font-size:clamp(2.4rem,7vw,5.5rem);font-weight:700;line-height:1.05;color:var(--blanc);text-shadow:0 0 60px rgba(201,168,76,.3);margin-bottom:.6rem;animation:apparaitre 1.4s .4s ease-out forwards;opacity:0;}
+    .hero-titre .or{color:var(--or);}
+    .hero-sous-titre{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.4rem);color:var(--creme2);margin:1.2rem 0 2.5rem;line-height:1.7;animation:apparaitre 1.4s .6s ease-out forwards;opacity:0;}
+    .hero-boutons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:apparaitre 1.4s .8s ease-out forwards;opacity:0;}
+    .btn-primaire{background:var(--or);color:var(--nuit);padding:.9rem 2.4rem;border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;transition:background .3s,transform .2s,box-shadow .3s;text-decoration:none;display:inline-block;}
+    .btn-primaire:hover{background:var(--or-clair);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.35);}
+    .btn-secondaire{background:transparent;color:var(--creme);padding:.9rem 2.4rem;border:1px solid rgba(201,168,76,.5);cursor:pointer;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;transition:border-color .3s,color .3s,transform .2s;text-decoration:none;display:inline-block;}
+    .btn-secondaire:hover{border-color:var(--or);color:var(--or);transform:translateY(-2px);}
+    .scroll-indicateur{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:apparaitre 1.4s 1.2s ease-out forwards;opacity:0;}
+    .scroll-indicateur span{font-family:'IM Fell English',serif;font-style:italic;font-size:.75rem;letter-spacing:.2em;color:var(--or);opacity:.6;}
+    .scroll-fleche{width:1px;height:40px;background:linear-gradient(var(--or),transparent);animation:descend 2s infinite ease-in-out;}
+    @keyframes descend{0%,100%{transform:scaleY(1);opacity:.6;}50%{transform:scaleY(1.3);opacity:1;}}
+
+    /* CITATION */
+    #citation{background:var(--bordeaux);border-top:1px solid rgba(201,168,76,.25);border-bottom:1px solid rgba(201,168,76,.25);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+    #citation::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(201,168,76,.03) 10px,rgba(201,168,76,.03) 20px);}
+    .citation-texte{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--sur-fonce);line-height:1.8;max-width:800px;margin:0 auto;position:relative;z-index:1;}
+    .citation-texte::before{content:'\201C';font-size:3rem;color:var(--or-clair);opacity:.7;line-height:0;vertical-align:-1rem;margin-right:.3rem;}
+    .citation-texte::after{content:'\201D';font-size:3rem;color:var(--or-clair);opacity:.7;line-height:0;vertical-align:-1rem;margin-left:.3rem;}
+    .citation-source{margin-top:.8rem;font-size:.85rem;letter-spacing:.2em;color:var(--or-clair);opacity:.9;font-family:'Cinzel',serif;position:relative;z-index:1;}
+
+    /* SECTIONS */
+    section{padding:6rem 0;}
+    section:nth-child(even){background:var(--nuit2);}
+    #categories{background:var(--nuit3);}
+    .categories-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+    .categorie-carte{position:relative;overflow:hidden;background:linear-gradient(135deg,#fffefb,#faf4e6);border:1px solid rgba(201,168,76,.25);padding:2.5rem 2rem;transition:transform .35s,box-shadow .35s,border-color .35s;cursor:pointer;text-decoration:none;display:block;}
+    .categorie-carte:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(201,168,76,.18),0 0 0 1px rgba(201,168,76,.4);border-color:rgba(201,168,76,.5);}
+    .categorie-carte::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.2),transparent 70%);opacity:0;transition:opacity .35s;}
+    .categorie-carte:hover::before{opacity:1;}
+    .categorie-icone{font-size:2.8rem;margin-bottom:1.2rem;display:block;transition:transform .35s;}
+    .categorie-carte:hover .categorie-icone{transform:scale(1.15);}
+    .categorie-nom{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.1em;color:var(--or);margin-bottom:.7rem;text-transform:uppercase;}
+    .categorie-desc{font-size:1rem;line-height:1.7;color:var(--creme2);opacity:.8;}
+    .categorie-lien{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-size:.85rem;letter-spacing:.12em;color:var(--or);font-family:'Cinzel',serif;text-transform:uppercase;opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .35s;}
+    .categorie-carte:hover .categorie-lien{opacity:1;transform:translateX(0);}
+
+    /* BOUTIQUE */
+    #boutique{background:var(--fond);}
+    .filtres{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+    .filtre-btn{padding:.5rem 1.4rem;border:1px solid rgba(201,168,76,.3);background:transparent;color:var(--creme2);font-family:'Cormorant Garamond',serif;font-size:.95rem;letter-spacing:.08em;cursor:pointer;transition:all .25s;}
+    .filtre-btn.actif,.filtre-btn:hover{background:var(--or);border-color:var(--or);color:var(--nuit);}
+    .produits-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem;}
+    .produit-carte{background:var(--nuit2);border:1px solid rgba(201,168,76,.15);overflow:hidden;transition:transform .35s,box-shadow .35s;position:relative;}
+    .produit-carte:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(201,168,76,.2);}
+    .produit-image{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+    .produit-image.has-cover{font-size:0;}
+    .produit-image img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+    .produit-image.bg1{background:linear-gradient(135deg,#1a0a2e,#2a0a3e);}
+    .produit-image.bg2{background:linear-gradient(135deg,#1a0808,#3a1010);}
+    .produit-image.bg3{background:linear-gradient(135deg,#0a1a0a,#102a10);}
+    .produit-image.bg4{background:linear-gradient(135deg,#1a1a08,#2e2a08);}
+    .produit-image.bg5{background:linear-gradient(135deg,#0a0a1a,#101030);}
+    .produit-image.bg6{background:linear-gradient(135deg,#2a0a1a,#3e0a1a);}
+    .badge-nouveau{position:absolute;top:.8rem;right:.8rem;background:var(--bordeaux2);color:var(--sur-fonce);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;padding:.25rem .7rem;text-transform:uppercase;z-index:2;}
+    .badge-populaire{position:absolute;top:.8rem;right:.8rem;background:var(--or);color:var(--nuit);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;padding:.25rem .7rem;text-transform:uppercase;z-index:2;}
+    .produit-corps{padding:1.4rem;}
+    .produit-categorie{font-family:'IM Fell English',serif;font-style:italic;font-size:.8rem;color:var(--or);opacity:.7;letter-spacing:.12em;margin-bottom:.4rem;}
+    .produit-nom{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--blanc);margin-bottom:.6rem;line-height:1.3;}
+    .produit-desc{font-size:.95rem;line-height:1.6;color:var(--creme2);opacity:.75;margin-bottom:1.2rem;}
+    .produit-pied{display:flex;align-items:center;justify-content:space-between;padding:0 1.4rem 1.4rem;}
+    .produit-gratuit{font-family:'Cinzel',serif;font-size:.85rem;color:var(--or-sombre);letter-spacing:.06em;}
+    .btn-acheter{background:var(--bordeaux);border:1px solid var(--bordeaux2);color:var(--sur-fonce);padding:.55rem 1.2rem;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;cursor:pointer;text-transform:uppercase;transition:background .25s,border-color .25s;}
+    .btn-acheter:hover{background:var(--or);border-color:var(--or);color:var(--nuit);}
+
+    /* TÉMOIGNAGES */
+    #temoignages{background:var(--nuit2);}
+    .temoignages-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+    .temoignage-carte{background:#ffffff;border:1px solid rgba(201,168,76,.2);padding:2rem;position:relative;box-shadow:0 6px 24px rgba(201,168,76,.08);}
+    .temoignage-carte::before{content:'\201C';position:absolute;top:.8rem;left:1.2rem;font-family:'IM Fell English',serif;font-size:4rem;color:var(--or);opacity:.2;line-height:1;}
+    .temoignage-etoiles{color:var(--or);margin-bottom:1rem;font-size:1rem;}
+    .temoignage-texte{font-family:'IM Fell English',serif;font-style:italic;font-size:1.05rem;line-height:1.8;color:var(--creme2);margin-bottom:1.4rem;}
+    .temoignage-auteur{display:flex;align-items:center;gap:.8rem;}
+    .temoignage-avatar{width:42px;height:42px;border-radius:50%;background:var(--bordeaux);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.9rem;color:var(--or);}
+    .temoignage-info strong{display:block;font-family:'Cinzel',serif;font-size:.85rem;color:var(--creme);letter-spacing:.06em;}
+    .temoignage-info span{font-size:.8rem;color:var(--or);opacity:.7;font-style:italic;}
+
+    /* À PROPOS */
+    #a-propos{background:var(--nuit3);}
+    .apropos-grille{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+    @media(max-width:768px){.apropos-grille{grid-template-columns:1fr;gap:3rem;}}
+    .apropos-visuel{position:relative;display:flex;align-items:center;justify-content:center;}
+    .apropos-cercle{width:340px;height:340px;border-radius:50%;background:radial-gradient(ellipse,rgba(201,168,76,.35) 0%,rgba(250,244,230,.95) 65%);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;box-shadow:0 0 60px rgba(201,168,76,.2),inset 0 0 40px rgba(201,168,76,.08);}
+    .apropos-cercle::before{content:'';position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(201,168,76,.08);}
+    .apropos-cercle::after{content:'';position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(201,168,76,.05);}
+    .apropos-texte p{font-size:1.1rem;line-height:1.85;color:var(--creme2);margin-bottom:1.2rem;opacity:.88;}
+    .apropos-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;}
+    .stat{text-align:center;padding:1rem;border:1px solid rgba(201,168,76,.15);}
+    .stat-nombre{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--or);font-weight:700;}
+    .stat-label{font-size:.8rem;letter-spacing:.1em;color:var(--creme2);opacity:.7;margin-top:.2rem;font-family:'IM Fell English',serif;font-style:italic;}
+
+    /* NEWSLETTER */
+    #newsletter{background:linear-gradient(rgba(201,168,76,.14),rgba(255,253,247,.95)),repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,168,76,.05) 30px,rgba(201,168,76,.05) 60px);text-align:center;}
+    .newsletter-form{display:flex;gap:0;max-width:500px;margin:0 auto;flex-wrap:wrap;}
+    .newsletter-input{flex:1;min-width:200px;background:#fffefb;border:1px solid rgba(201,168,76,.35);border-right:none;padding:1rem 1.4rem;color:var(--creme);font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;transition:border-color .25s;}
+    .newsletter-input:focus{border-color:var(--or);}
+    .newsletter-input::placeholder{color:var(--creme2);opacity:.4;font-style:italic;}
+    .newsletter-btn{background:var(--or);color:var(--nuit);padding:1rem 1.8rem;border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:background .25s;}
+    .newsletter-btn:hover{background:var(--or-clair);}
+
+    /* MODAL PRODUIT (multi-étapes) */
+    .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(36,26,8,.4);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:2rem;}
+    .modal-overlay.ouvert{display:flex;}
+    .modal{background:var(--nuit2);border:1px solid rgba(201,168,76,.3);max-width:600px;width:100%;position:relative;animation:modalApparaitre .35s ease-out;max-height:90vh;overflow-y:auto;}
+    @keyframes modalApparaitre{from{opacity:0;transform:translateY(20px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--or);font-size:1.4rem;cursor:pointer;opacity:.6;transition:opacity .2s;z-index:5;}
+    .modal-close:hover{opacity:1;}
+    .modal-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden;}
+    .modal-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+    .modal-corps{padding:2rem;}
+    .modal-categorie{font-family:'IM Fell English',serif;font-style:italic;font-size:.85rem;color:var(--or);opacity:.7;margin-bottom:.4rem;}
+    .modal-titre{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--blanc);margin-bottom:.8rem;}
+    .modal-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:1rem;color:var(--creme2);line-height:1.8;opacity:.85;}
+    .modal-pied{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,.15);}
+    .modal-prix{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--or);font-weight:700;}
+    .modal-acheter{background:var(--or);border:none;color:var(--nuit);padding:.8rem 1.8rem;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.15em;cursor:pointer;text-transform:uppercase;transition:background .25s;}
+    .modal-acheter:hover{background:var(--or-clair);}
+    /* étapes modal */
+    .modal-etape{display:none;}
+    .modal-etape.active{display:block;}
+    .etapes-barre{display:flex;border-bottom:1px solid rgba(201,168,76,.15);}
+    .etape-ind{flex:1;padding:.65rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;color:var(--creme2);opacity:.35;border-bottom:2px solid transparent;}
+    .etape-ind.active{color:var(--or);opacity:1;border-bottom-color:var(--or);}
+    .etape-ind.done{opacity:.6;}
+    /* formulaire commande */
+    .commande-form{padding:1.8rem;}
+    .commande-form h4{font-family:'Cinzel',serif;color:var(--or);font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;}
+    .cf-champ{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;}
+    .cf-champ label{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;}
+    .cf-champ input{background:#fffefb;border:1px solid rgba(201,168,76,.3);color:var(--creme);padding:.75rem 1rem;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;transition:border-color .25s;}
+    .cf-champ input:focus{border-color:var(--or);}
+    .cf-champ input::placeholder{color:var(--creme2);opacity:.4;font-style:italic;}
+    .cf-note{font-size:.85rem;color:var(--creme2);opacity:.55;font-style:italic;font-family:'IM Fell English',serif;margin-bottom:1.2rem;line-height:1.6;}
+    /* confirmation */
+    .confirm-box{padding:2rem;text-align:center;}
+    .confirm-ico{font-size:3.5rem;margin-bottom:1rem;}
+    .confirm-titre{font-family:'Cinzel',serif;color:var(--or);font-size:1.1rem;letter-spacing:.12em;margin-bottom:.8rem;}
+    .confirm-texte{font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);line-height:1.8;margin-bottom:1.5rem;}
+    .paiement-box{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.25);padding:1.4rem;margin:0 0 1.5rem;}
+    .paiement-titre{font-family:'Cinzel',serif;color:var(--or);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;}
+    .paiement-contact{font-family:'Cinzel',serif;color:var(--or);font-size:1.15rem;margin:.5rem 0;}
+    .paiement-info{font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);opacity:.75;font-size:.95rem;line-height:1.7;}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--bordeaux);color:var(--sur-fonce);border:1px solid rgba(201,168,76,.3);padding:.9rem 1.8rem;display:flex;align-items:center;gap:.8rem;z-index:5000;opacity:0;transition:transform .4s,opacity .4s;max-width:340px;box-shadow:0 10px 30px rgba(0,0,0,.15);}
+    .toast.visible{transform:translateX(-50%) translateY(0);opacity:1;}
+    .toast-icone{font-size:1.4rem;}
+
+    /* FOOTER */
+    footer{background:var(--fond);border-top:1px solid rgba(201,168,76,.2);padding:4rem 0 2rem;}
+    .footer-grille{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+    @media(max-width:900px){.footer-grille{grid-template-columns:1fr 1fr;}}
+    @media(max-width:560px){.footer-grille{grid-template-columns:1fr;}}
+    .footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:.12em;color:var(--or);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+    .footer-desc{font-size:1rem;line-height:1.7;color:var(--creme2);opacity:.6;margin-bottom:1.5rem;}
+    .footer-social{display:flex;gap:.8rem;}
+    .social-btn{width:36px;height:36px;border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;color:var(--or);font-size:.85rem;cursor:pointer;transition:background .25s,border-color .25s;text-decoration:none;}
+    .social-btn:hover{background:rgba(201,168,76,.15);border-color:var(--or);}
+    .footer-titre-col{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;color:var(--or);text-transform:uppercase;margin-bottom:1.2rem;}
+    .footer-liens{list-style:none;}
+    .footer-liens li{margin-bottom:.7rem;}
+    .footer-liens a{font-size:.95rem;color:var(--creme2);opacity:.6;text-decoration:none;transition:opacity .25s,color .25s;font-family:'IM Fell English',serif;font-style:italic;}
+    .footer-liens a:hover{opacity:1;color:var(--or);}
+    .footer-bas{border-top:1px solid rgba(201,168,76,.1);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-copy{font-size:.85rem;color:var(--creme2);opacity:.4;font-family:'IM Fell English',serif;font-style:italic;}
+    .footer-croix{color:var(--or);opacity:.6;font-size:1rem;cursor:pointer;user-select:none;transition:opacity .3s;}
+    .footer-croix:hover{opacity:1;}
+
+    /* REVEAL */
+    .revele{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s;}
+    .revele.visible{opacity:1;transform:translateY(0);}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .nav-liens,.nav-cta-wrapper{display:none;}
+      .burger{display:flex;}
+      nav.menu-ouvert .nav-liens{display:flex;flex-direction:column;position:fixed;inset:0;top:70px;background:rgba(255,253,247,.98);padding:3rem 2rem;gap:2rem;align-items:center;justify-content:flex-start;}
+      nav.menu-ouvert .nav-liens a{font-size:1.4rem;}
+    }
+
+    /* ============================================================
+       ADMIN PANEL
+    ============================================================ */
+    .admin-login-overlay{position:fixed;inset:0;z-index:4000;background:rgba(36,26,8,.45);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;}
+    .admin-login-overlay.ouvert{display:flex;}
+    .admin-login-box{background:var(--nuit2);border:1px solid rgba(201,168,76,.35);padding:3rem;max-width:400px;width:100%;text-align:center;animation:modalApparaitre .35s ease-out;}
+    .admin-login-icone{font-size:2.5rem;margin-bottom:1rem;}
+    .admin-login-titre{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--or);letter-spacing:.15em;margin-bottom:.4rem;}
+    .admin-login-sous{font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);opacity:.6;margin-bottom:2rem;}
+    .admin-login-input{width:100%;background:var(--nuit3);border:1px solid rgba(201,168,76,.3);color:var(--creme);padding:.9rem 1.2rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;text-align:center;outline:none;margin-bottom:1rem;transition:border-color .25s;letter-spacing:.15em;}
+    .admin-login-input:focus{border-color:var(--or);}
+    .admin-login-erreur{color:#e74c3c;font-size:.85rem;font-family:'IM Fell English',serif;font-style:italic;margin-bottom:1rem;display:none;}
+    .admin-login-erreur.visible{display:block;}
+    .admin-login-annuler{background:none;border:none;color:var(--creme2);opacity:.5;font-family:'IM Fell English',serif;font-style:italic;font-size:.9rem;cursor:pointer;margin-top:.8rem;transition:opacity .2s;}
+    .admin-login-annuler:hover{opacity:.9;}
+
+    .admin-overlay{position:fixed;inset:0;z-index:3000;background:var(--fond);display:none;flex-direction:column;}
+    .admin-overlay.ouvert{display:flex;}
+    .admin-header{background:var(--nuit2);border-bottom:1px solid rgba(201,168,76,.2);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .admin-header-logo{font-family:'Cinzel',serif;color:var(--or);letter-spacing:.15em;font-size:.95rem;}
+    .admin-header-logo span{opacity:.5;margin:0 .8rem;}
+    .admin-fermer{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--or);padding:.4rem 1.2rem;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;cursor:pointer;transition:all .25s;}
+    .admin-fermer:hover{background:rgba(201,168,76,.1);}
+    .admin-corps{display:flex;flex:1;overflow:hidden;}
+    .admin-sidebar{width:220px;flex-shrink:0;background:var(--nuit2);border-right:1px solid rgba(201,168,76,.12);padding:1.5rem 0;overflow-y:auto;}
+    .admin-nav-btn{display:flex;align-items:center;gap:.8rem;width:100%;padding:.85rem 1.5rem;background:none;border:none;border-left:3px solid transparent;color:var(--creme2);cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1rem;text-align:left;transition:all .2s;}
+    .admin-nav-btn:hover{background:rgba(201,168,76,.07);color:var(--or);}
+    .admin-nav-btn.actif{border-left-color:var(--or);color:var(--or);background:rgba(201,168,76,.1);}
+    .admin-nav-icone{font-size:1.1rem;width:22px;text-align:center;}
+    .admin-contenu{flex:1;overflow-y:auto;padding:2rem;}
+    .admin-section{display:none;}
+    .admin-section.actif{display:block;}
+    .admin-section-titre{font-family:'Cinzel',serif;font-size:1rem;color:var(--or);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.18);}
+    /* stats */
+    .admin-stats-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem;}
+    .admin-stat{background:var(--nuit2);border:1px solid rgba(201,168,76,.18);padding:1.4rem;text-align:center;}
+    .admin-stat-n{font-family:'Cinzel',serif;font-size:2rem;color:var(--or);font-weight:700;}
+    .admin-stat-l{font-size:.8rem;color:var(--creme2);opacity:.65;font-family:'IM Fell English',serif;font-style:italic;margin-top:.3rem;}
+    .admin-derniers{background:var(--nuit2);border:1px solid rgba(201,168,76,.12);padding:1.2rem;}
+    .admin-derniers-titre{font-family:'Cinzel',serif;font-size:.75rem;color:var(--or);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;}
+    /* table */
+    .admin-table{width:100%;border-collapse:collapse;}
+    .admin-table th{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:var(--or);text-align:left;padding:.7rem 1rem;border-bottom:1px solid rgba(201,168,76,.18);text-transform:uppercase;}
+    .admin-table td{padding:.85rem 1rem;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;color:var(--creme2);vertical-align:middle;}
+    .admin-table tr:last-child td{border-bottom:none;}
+    .admin-table tr:hover td{background:rgba(201,168,76,.05);}
+    /* form */
+    .admin-form{background:var(--nuit2);border:1px solid rgba(201,168,76,.15);padding:1.5rem;margin-bottom:2rem;}
+    .admin-form-titre{font-family:'Cinzel',serif;font-size:.8rem;color:var(--or);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;}
+    .admin-grille2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    @media(max-width:600px){.admin-grille2{grid-template-columns:1fr;}}
+    .admin-champ{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.8rem;}
+    .admin-champ label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;}
+    .admin-champ input,.admin-champ select,.admin-champ textarea{background:var(--nuit3);border:1px solid rgba(201,168,76,.2);color:var(--creme);padding:.65rem .9rem;font-family:'Cormorant Garamond',serif;font-size:.95rem;outline:none;transition:border-color .25s;width:100%;}
+    .admin-champ input:focus,.admin-champ select:focus,.admin-champ textarea:focus{border-color:var(--or);}
+    .admin-champ select option{background:var(--nuit2);}
+    .admin-champ textarea{resize:vertical;min-height:70px;}
+    .admin-champ-full{grid-column:1/-1;}
+    /* bg picker */
+    .bg-options{display:flex;gap:.5rem;flex-wrap:wrap;}
+    .bg-opt{width:34px;height:34px;cursor:pointer;border:2px solid transparent;border-radius:2px;transition:border-color .2s;flex-shrink:0;}
+    .bg-opt.sel{border-color:var(--or);}
+    .bg-opt.bg1{background:linear-gradient(135deg,#1a0a2e,#2a0a3e);}
+    .bg-opt.bg2{background:linear-gradient(135deg,#1a0808,#3a1010);}
+    .bg-opt.bg3{background:linear-gradient(135deg,#0a1a0a,#102a10);}
+    .bg-opt.bg4{background:linear-gradient(135deg,#1a1a08,#2e2a08);}
+    .bg-opt.bg5{background:linear-gradient(135deg,#0a0a1a,#101030);}
+    .bg-opt.bg6{background:linear-gradient(135deg,#2a0a1a,#3e0a1a);}
+    /* badge picker */
+    .badge-opts{display:flex;gap:.5rem;}
+    .badge-opt{padding:.35rem .9rem;border:1px solid rgba(201,168,76,.3);background:transparent;color:var(--creme2);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+    .badge-opt.sel{background:var(--or);color:var(--nuit);border-color:var(--or);}
+    /* btns admin */
+    .btn-ap{background:var(--or);color:var(--nuit);border:none;padding:.65rem 1.5rem;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .25s;}
+    .btn-ap:hover{background:var(--or-clair);}
+    .btn-ap.sec{background:transparent;color:var(--creme2);border:1px solid rgba(201,168,76,.3);}
+    .btn-ap.sec:hover{border-color:var(--or);color:var(--or);}
+    .btn-ap.danger{background:transparent;color:#e74c3c;border:1px solid #e74c3c;}
+    .btn-ap.danger:hover{background:#e74c3c;color:white;}
+    .btn-ap.success{background:transparent;color:#27ae60;border:1px solid #27ae60;}
+    .btn-ap.success:hover{background:#27ae60;color:white;}
+    .btn-ap.sm{padding:.35rem .9rem;font-size:.65rem;}
+    /* produit admin item */
+    .pa-item{background:var(--nuit2);border:1px solid rgba(201,168,76,.12);display:flex;align-items:center;gap:1rem;padding:.9rem 1rem;margin-bottom:.7rem;transition:border-color .25s;}
+    .pa-item:hover{border-color:rgba(201,168,76,.3);}
+    .pa-prev{width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden;}
+    .pa-prev img{width:100%;height:100%;object-fit:cover;}
+    .pa-info{flex:1;}
+    .pa-nom{font-family:'Cinzel',serif;font-size:.85rem;color:var(--blanc);}
+    .pa-meta{font-size:.78rem;color:var(--creme2);opacity:.55;font-style:italic;font-family:'IM Fell English',serif;margin-top:.2rem;}
+    .pa-actions{display:flex;gap:.5rem;flex-shrink:0;}
+    /* couvertures */
+    .couv-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+    .couv-item{background:var(--nuit2);border:1px solid rgba(201,168,76,.12);padding:1rem;}
+    .couv-prev{width:100%;aspect-ratio:3/4;background:var(--nuit3);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:.8rem;overflow:hidden;position:relative;}
+    .couv-prev img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+    .couv-nom{font-family:'Cinzel',serif;font-size:.72rem;color:var(--or);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem;}
+    .couv-input{width:100%;background:var(--nuit3);border:1px solid rgba(201,168,76,.2);color:var(--creme);padding:.5rem .7rem;font-family:'Cormorant Garamond',serif;font-size:.85rem;outline:none;margin-bottom:.5rem;transition:border-color .25s;}
+    .couv-input:focus{border-color:var(--or);}
+    .couv-actions{display:flex;gap:.5rem;flex-wrap:wrap;}
+    /* badge statut */
+    .bs{display:inline-block;padding:.2rem .7rem;font-size:.65rem;font-family:'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase;}
+    .bs.att{background:rgba(201,168,76,.12);color:var(--or);border:1px solid rgba(201,168,76,.25);}
+    .bs.env{background:rgba(39,174,96,.12);color:#27ae60;border:1px solid rgba(39,174,96,.25);}
+    /* paramètres */
+    .params-section{background:var(--nuit2);border:1px solid rgba(201,168,76,.15);padding:1.5rem;margin-bottom:1.5rem;}
+    .params-titre{font-family:'Cinzel',serif;font-size:.78rem;color:var(--or);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;}
+    /* bouton téléchargement PDF */
+    .btn-download{display:inline-flex;align-items:center;gap:.6rem;background:var(--or);color:var(--nuit);padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,transform .2s;border:none;cursor:pointer;margin:.8rem auto;font-weight:600;}
+    .btn-download:hover{background:var(--or-clair);transform:translateY(-2px);}
+    .btn-download svg{flex-shrink:0;}
+    /* sélecteur devise */
+    .devise-btn{flex:1;background:#fffefb;border:1px solid rgba(201,168,76,.3);color:var(--creme2);padding:.8rem .6rem;font-family:'Cormorant Garamond',serif;font-size:.9rem;cursor:pointer;transition:all .25s;line-height:1.5;text-align:center;}
+    .devise-btn small{font-size:.72rem;opacity:.6;display:block;font-family:'IM Fell English',serif;font-style:italic;}
+    .devise-btn:hover{border-color:rgba(201,168,76,.5);color:var(--creme);}
+    .devise-btn.actif{background:rgba(201,168,76,.12);border-color:var(--or);color:var(--or);}
+    /* ref box & whatsapp */
+    .ref-box{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.35);padding:1.2rem;margin:1rem 0;text-align:center;}
+    .ref-label{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.18em;color:var(--or);text-transform:uppercase;margin-bottom:.5rem;}
+    .ref-valeur{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--blanc);letter-spacing:.12em;word-break:break-all;margin-bottom:.8rem;}
+    .ref-actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;}
+    .btn-copier{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--or);padding:.45rem 1.1rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+    .btn-copier:hover{background:var(--or);color:var(--nuit);}
+    .btn-wa{background:#25D366;border:none;color:#fff;padding:.45rem 1.2rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .25s;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;}
+    .btn-wa:hover{opacity:.88;}
+    .ref-note{font-family:'IM Fell English',serif;font-style:italic;font-size:.82rem;color:var(--creme2);opacity:.6;line-height:1.6;}
+    #formAjout.visible{display:block;}
+    .admin-vide{text-align:center;padding:3rem;font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);opacity:.4;}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo"><span class="croix">✝</span><span>Sanctuaire des Prières</span></a>
+  <ul class="nav-liens" id="navLiens">
+    <li><a href="#categories">Collections</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+    <li><a href="#a-propos">À Propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta-wrapper" style="display:flex;gap:.6rem;">
+    <button class="nav-cta" onclick="ouvrirModalDon()">❤ Faire un don</button>
+    <button class="nav-cta" onclick="document.getElementById('boutique').scrollIntoView({behavior:'smooth'})">Découvrir →</button>
+  </div>
+  <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="etoiles" id="etoiles"></div>
+  <div class="hero-cadre"></div>
+  <div class="hero-contenu">
+    <p class="hero-eyebrow">✦ &nbsp; La Foi. La Grâce. La Lumière. &nbsp; ✦</p>
+    <h1 class="hero-titre">Sanctuaire<br/>des <span class="or">Prières</span></h1>
+    <p class="hero-sous-titre">Un trésor de prières catholiques offertes gratuitement<br/>et de recueils de dévotion premium, composés avec foi et transmis avec amour</p>
+    <div class="hero-boutons">
+      <a href="#boutique" class="btn-primaire">Découvrir</a>
+      <a href="#a-propos" class="btn-secondaire">Notre Mission</a>
+      <button class="btn-secondaire" onclick="ouvrirModalDon()">❤ Faire un don</button>
+    </div>
+  </div>
+  <div class="scroll-indicateur"><span>Descendez</span><div class="scroll-fleche"></div></div>
+</section>
+
+<!-- CITATION -->
+<div id="citation">
+  <p class="citation-texte">Demandez et l'on vous donnera, cherchez et vous trouverez, frappez et l'on vous ouvrira.</p>
+  <p class="citation-source">— Matthieu 7:7</p>
+</div>
+
+<!-- CATÉGORIES -->
+<section id="categories">
+  <div class="container">
+    <h2 class="section-titre revele">Nos Collections</h2>
+    <div class="separateur revele"><span></span><svg viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z"/></svg><span></span></div>
+    <p class="section-sous-titre revele">Explorez notre trésor de dévotions catholiques</p>
+    <div class="categories-grille">
+      <a href="#boutique" class="categorie-carte revele" onclick="filtrer('prieres')">
+        <span class="categorie-icone">🙏</span>
+        <div class="categorie-nom">Prières</div>
+        <p class="categorie-desc">Prières composées pour chaque moment de la journée, chaque saison liturgique et chaque intention du cœur.</p>
+        <span class="categorie-lien">Voir les prières →</span>
+      </a>
+      <a href="#boutique" class="categorie-carte revele" onclick="filtrer('recueils')">
+        <span class="categorie-icone">📖</span>
+        <div class="categorie-nom">Recueils</div>
+        <p class="categorie-desc">Des recueils complets de méditations, de louanges et d'élévations spirituelles pour nourrir votre âme.</p>
+        <span class="categorie-lien">Voir les recueils →</span>
+      </a>
+      <a href="#boutique" class="categorie-carte revele" onclick="filtrer('rituels')">
+        <span class="categorie-icone">✝️</span>
+        <div class="categorie-nom">Rituels</div>
+        <p class="categorie-desc">Guides de rituels catholiques authentiques : bénédictions, neuvaines, dévotions sacrées et cérémonies familiales.</p>
+        <span class="categorie-lien">Voir les rituels →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTIQUE -->
+<section id="boutique">
+  <div class="container">
+    <h2 class="section-titre revele">Boutique Spirituelle</h2>
+    <div class="separateur revele"><span></span><svg viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z"/></svg><span></span></div>
+    <p class="section-sous-titre revele">Prières gratuites et recueils premium, composés avec foi, en PDF numérique</p>
+    <div class="filtres revele">
+      <button class="filtre-btn actif" onclick="filtrer('tous')">Tous</button>
+      <button class="filtre-btn" onclick="filtrer('prieres')">Prières</button>
+      <button class="filtre-btn" onclick="filtrer('recueils')">Recueils</button>
+      <button class="filtre-btn" onclick="filtrer('rituels')">Rituels</button>
+    </div>
+    <div class="produits-grille" id="produitsGrille"></div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section id="temoignages">
+  <div class="container">
+    <h2 class="section-titre revele">Ce Qu'en Disent les Fidèles</h2>
+    <div class="separateur revele"><span></span><svg viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z"/></svg><span></span></div>
+    <p class="section-sous-titre revele">Des âmes touchées par la grâce de ces prières</p>
+    <div class="temoignages-grille">
+      <div class="temoignage-carte revele">
+        <div class="temoignage-etoiles">★★★★★</div>
+        <p class="temoignage-texte">Ces prières du matin ont transformé ma façon de commencer la journée. Chaque mot est choisi avec une telle profondeur spirituelle que je me sens vraiment en présence de Dieu.</p>
+        <div class="temoignage-auteur"><div class="temoignage-avatar">M</div><div class="temoignage-info"><strong>Marie-Claire D.</strong><span>Lyon, France</span></div></div>
+      </div>
+      <div class="temoignage-carte revele">
+        <div class="temoignage-etoiles">★★★★★</div>
+        <p class="temoignage-texte">Le guide des neuvaines m'a accompagnée pendant une période difficile. Les rituels sont authentiques, bien fondés dans la tradition catholique. Je recommande à toute ma famille.</p>
+        <div class="temoignage-auteur"><div class="temoignage-avatar">A</div><div class="temoignage-info"><strong>Agnès B.</strong><span>Abidjan, Côte d'Ivoire</span></div></div>
+      </div>
+      <div class="temoignage-carte revele">
+        <div class="temoignage-etoiles">★★★★★</div>
+        <p class="temoignage-texte">Le recueil sur la Passion m'a aidé à vivre le Carême avec une intensité que je n'avais jamais connue. Les méditations touchent directement le cœur. Béni soit ce travail !</p>
+        <div class="temoignage-auteur"><div class="temoignage-avatar">P</div><div class="temoignage-info"><strong>Pierre-Antoine M.</strong><span>Montréal, Canada</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="a-propos">
+  <div class="container">
+    <div class="apropos-grille">
+      <div class="apropos-visuel revele"><div class="apropos-cercle">✝</div></div>
+      <div class="apropos-texte">
+        <h2 class="section-titre" style="text-align:left;margin-bottom:.5rem;">Notre Mission</h2>
+        <div class="separateur revele" style="justify-content:flex-start;"><span></span><svg viewBox="0 0 20 20" style="fill:var(--or);width:14px;height:14px;"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z"/></svg><span></span></div>
+        <p class="revele">Fondé dans la foi et nourri par la Tradition catholique, le <strong style="color:var(--or)">Sanctuaire des Prières</strong> est un espace où la parole de Dieu devient prière vivante.</p>
+        <p class="revele">Chaque prière, chaque recueil, chaque rituel est composé avec soin, ancré dans l'Écriture Sainte et les richesses de la spiritualité catholique — pour vous aider à approfondir votre relation avec Dieu.</p>
+        <p class="revele">Nos œuvres numériques sont accessibles à tous les fidèles, partout dans le monde, pour que la prière ne connaisse pas de frontières.</p>
+        <div class="apropos-stats revele">
+          <div class="stat"><div class="stat-nombre">200+</div><div class="stat-label">Prières composées</div></div>
+          <div class="stat"><div class="stat-nombre">15+</div><div class="stat-label">Œuvres disponibles</div></div>
+          <div class="stat"><div class="stat-nombre">500+</div><div class="stat-label">Âmes touchées</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="container">
+    <h2 class="section-titre revele">Restez en Communion</h2>
+    <div class="separateur revele"><span></span><svg viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z"/></svg><span></span></div>
+    <p class="section-sous-titre revele" style="margin-bottom:2rem;">Recevez des prières gratuites, des méditations et nos nouvelles publications</p>
+    <div class="revele" style="display:flex;justify-content:center;">
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="Votre adresse e-mail…" />
+        <button class="newsletter-btn" onclick="sInscrire()">S'inscrire ✝</button>
+      </div>
+    </div>
+    <p class="revele" style="text-align:center;margin-top:1rem;font-size:.85rem;color:var(--creme2);opacity:.4;font-style:italic;">Aucun spam. Seulement des messages qui nourrissent l'âme.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grille">
+      <div>
+        <div class="footer-logo">✝ Sanctuaire des Prières</div>
+        <p class="footer-desc">Un trésor de prières catholiques composées avec amour pour vous aider à cheminer vers Dieu.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Facebook">f</a>
+          <a href="#" class="social-btn" title="Instagram">✦</a>
+          <a href="#" class="social-btn" title="YouTube">▶</a>
+          <a href="#" class="social-btn" title="Email">✉</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-titre-col">Collections</div>
+        <ul class="footer-liens">
+          <li><a href="#boutique" onclick="filtrer('prieres')">Prières</a></li>
+          <li><a href="#boutique" onclick="filtrer('recueils')">Recueils</a></li>
+          <li><a href="#boutique" onclick="filtrer('rituels')">Rituels</a></li>
+          <li><a href="#boutique">Tout voir</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-titre-col">Information</div>
+        <ul class="footer-liens">
+          <li><a href="#a-propos">Notre Mission</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-titre-col">Contact</div>
+        <ul class="footer-liens">
+          <li><a href="mailto:contact@sanctuaire-des-prieres.fr">✉ Nous écrire</a></li>
+          <li><a href="#">Conditions d'utilisation</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bas">
+      <span class="footer-copy">© 2024 Sanctuaire des Prières — Tous droits réservés</span>
+      <!-- Cliquer 3× sur les croix pour accéder à l'admin -->
+      <span class="footer-croix" id="adminTrigger" title="✝">✝ ✝ ✝</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL PRODUIT -->
+<div class="modal-overlay" id="modalOverlay" onclick="fermerModalClic(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="fermerModal()">✕</button>
+    <div class="etapes-barre">
+      <div class="etape-ind active" id="et1">① Détails</div>
+      <div class="etape-ind" id="et2">② Commande</div>
+      <div class="etape-ind" id="et3">③ Confirmation</div>
+    </div>
+
+    <!-- ÉTAPE 1 : info produit -->
+    <div class="modal-etape active" id="etape1">
+      <div class="modal-img" id="modalImg"></div>
+      <div class="modal-corps">
+        <div class="modal-categorie" id="modalCategorie"></div>
+        <h3 class="modal-titre" id="modalTitre"></h3>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-pied">
+          <div class="produit-gratuit" id="modalGratuit">🎁 Offert gratuitement</div>
+          <button class="modal-acheter" onclick="allerEtape(2)">Recevoir ce PDF →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 : formulaire -->
+    <div class="modal-etape" id="etape2">
+      <div class="commande-form">
+        <h4 id="cfTitre">✝ Recevoir votre PDF gratuitement</h4>
+        <p class="cf-note" id="cfNoteTexte">Renseignez votre e-mail. Votre PDF vous sera envoyé instantanément à cette adresse — aucun paiement requis.</p>
+
+        <!-- Sélecteur de devise (produits payants uniquement) -->
+        <div id="deviseSelectBlock" style="display:none;">
+          <div style="display:flex;gap:.6rem;margin-bottom:1.2rem;">
+            <button class="devise-btn actif" id="deviseXOF" onclick="choisirDevise('XOF')">
+              🌍 Payer en FCFA<br/><small>Mobile Money · Bénin / Afrique</small>
+            </button>
+            <button class="devise-btn" id="deviseEUR" onclick="choisirDevise('EUR')">
+              🇪🇺 Payer en Euros<br/><small>Carte bancaire · France / Europe</small>
+            </button>
+          </div>
+          <div id="montantAffiche" style="text-align:center;font-family:'Cinzel',serif;color:var(--or-sombre);font-size:1.1rem;margin-bottom:1.2rem;letter-spacing:.08em;"></div>
+        </div>
+
+        <div class="cf-champ">
+          <label>Prénom *</label>
+          <input type="text" id="cfPrenom" placeholder="Jean" />
+        </div>
+        <div class="cf-champ">
+          <label>Nom *</label>
+          <input type="text" id="cfNom" placeholder="Dupont" />
+        </div>
+        <div class="cf-champ">
+          <label>Adresse e-mail * <em style="opacity:.6;font-size:.8em;">(pour recevoir le PDF)</em></label>
+          <input type="email" id="cfEmail" placeholder="jean@email.com" />
+        </div>
+        <div class="cf-champ">
+          <label>Téléphone <em style="opacity:.6;font-size:.8em;">(optionnel)</em></label>
+          <input type="tel" id="cfPhone" placeholder="+229 XX XX XX XX" />
+        </div>
+        <div id="fedaErreur" style="display:none;color:#e74c3c;font-family:'IM Fell English',serif;font-style:italic;font-size:.9rem;margin-bottom:.8rem;padding:.6rem;border:1px solid rgba(231,76,60,.3);background:rgba(231,76,60,.07);"></div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;">
+          <button class="btn-ap sec" onclick="allerEtape(1)">← Retour</button>
+          <button class="btn-ap" id="btnPayer" onclick="validerCommandeProduit()">
+            <span id="btnPayerTexte">Recevoir mon PDF →</span>
+          </button>
+        </div>
+        <p style="margin-top:1rem;font-size:.78rem;color:var(--creme2);opacity:.6;font-style:italic;font-family:'IM Fell English',serif;text-align:center;" id="cfBasNote">
+          100% gratuit · Aucune carte bancaire requise
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 : confirmation -->
+    <div class="modal-etape" id="etape3">
+      <div class="confirm-box">
+        <div class="confirm-ico" id="confirmIco">✝</div>
+        <div class="confirm-titre" id="confirmTitre">Votre PDF est prêt !</div>
+        <p class="confirm-texte" id="confirmTexte">Béni(e) soyez-vous. Voici votre prière.</p>
+        <div class="paiement-box" id="confirmDetails" style="text-align:left;"></div>
+        <div style="text-align:center;padding:1rem 0 .5rem;border-top:1px solid rgba(201,168,76,.15);">
+          <p class="ref-note" style="margin-bottom:.8rem;">Si cette prière vous a touché(e), soutenez ce ministère :</p>
+          <button class="btn-ap sec" onclick="fermerModal();ouvrirModalDon();">❤ Faire un don</button>
+        </div>
+        <button class="btn-ap sec" style="margin-top:1.2rem;" onclick="fermerModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DON -->
+<div class="modal-overlay" id="donModalOverlay" onclick="fermerModalDonClic(event)">
+  <div class="modal" id="donModal" style="max-width:480px;">
+    <button class="modal-close" onclick="fermerModalDon()">✕</button>
+    <div class="etapes-barre">
+      <div class="etape-ind active" id="etd1">① Montant</div>
+      <div class="etape-ind" id="etd2">② Coordonnées</div>
+      <div class="etape-ind" id="etd3">③ Merci</div>
+    </div>
+
+    <!-- ÉTAPE 1 : montant du don -->
+    <div class="modal-etape active" id="etapeDon1">
+      <div class="commande-form">
+        <h4>❤ Soutenir le Sanctuaire des Prières</h4>
+        <p class="cf-note">Ce ministère offre gratuitement ses prières. Votre don, quel qu'en soit le montant, nous aide à continuer.</p>
+        <div style="display:flex;gap:.6rem;margin-bottom:1.2rem;">
+          <button class="devise-btn actif" id="donDeviseXOF" onclick="choisirDeviseDon('XOF')">
+            🌍 Don en FCFA<br/><small>Mobile Money · Bénin / Afrique</small>
+          </button>
+          <button class="devise-btn" id="donDeviseEUR" onclick="choisirDeviseDon('EUR')">
+            🇪🇺 Don en Euros<br/><small>Carte bancaire · France / Europe</small>
+          </button>
+        </div>
+        <div class="bg-options" id="donMontantsGrille" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem;"></div>
+        <div class="cf-champ">
+          <label>Ou montant libre</label>
+          <input type="number" id="donMontantLibre" placeholder="Ex: 2000" min="1" oninput="selectionMontantLibre()" />
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem;">
+          <button class="btn-ap" onclick="validerMontantDon()">Continuer →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 : coordonnées du donateur -->
+    <div class="modal-etape" id="etapeDon2">
+      <div class="commande-form">
+        <h4>✝ Vos coordonnées</h4>
+        <p class="cf-note">Utilisées uniquement pour vous confirmer la bonne réception de votre don.</p>
+        <div class="cf-champ">
+          <label>Prénom *</label>
+          <input type="text" id="donPrenom" placeholder="Jean" />
+        </div>
+        <div class="cf-champ">
+          <label>Nom *</label>
+          <input type="text" id="donNom" placeholder="Dupont" />
+        </div>
+        <div class="cf-champ">
+          <label>Adresse e-mail *</label>
+          <input type="email" id="donEmail" placeholder="jean@email.com" />
+        </div>
+        <div class="cf-champ">
+          <label>Téléphone <em style="opacity:.6;font-size:.8em;">(optionnel)</em></label>
+          <input type="tel" id="donPhone" placeholder="+229 XX XX XX XX" />
+        </div>
+        <div id="donErreur" style="display:none;color:#e74c3c;font-family:'IM Fell English',serif;font-style:italic;font-size:.9rem;margin-bottom:.8rem;padding:.6rem;border:1px solid rgba(231,76,60,.3);background:rgba(231,76,60,.07);"></div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;">
+          <button class="btn-ap sec" onclick="allerEtapeDon(1)">← Retour</button>
+          <button class="btn-ap" id="btnPayerDon" onclick="lancerPaiementDon()">
+            <span id="btnPayerDonTexte">Faire le don →</span>
+          </button>
+        </div>
+        <p style="margin-top:1rem;font-size:.78rem;color:var(--creme2);opacity:.6;font-style:italic;font-family:'IM Fell English',serif;text-align:center;">
+          Paiement sécurisé · Mobile Money · Carte bancaire · FedaPay
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 : confirmation don -->
+    <div class="modal-etape" id="etapeDon3">
+      <div class="confirm-box">
+        <div class="confirm-ico">🙏</div>
+        <div class="confirm-titre">Merci pour votre générosité !</div>
+        <p class="confirm-texte" id="confirmDonTexte">Béni(e) soyez-vous. Votre don a bien été reçu.</p>
+        <div class="paiement-box" id="confirmDonDetails" style="text-align:left;"></div>
+        <button class="btn-ap sec" style="margin-top:1.2rem;" onclick="fermerModalDon()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icone">✝</span>
+  <span id="toastMsg">Message</span>
+</div>
+
+<!-- ============================================================
+     ADMIN LOGIN
+============================================================ -->
+<div class="admin-login-overlay" id="adminLoginOverlay">
+  <div class="admin-login-box">
+    <div class="admin-login-icone">🔐</div>
+    <div class="admin-login-titre">Espace Administrateur</div>
+    <div class="admin-login-sous">Sanctuaire des Prières — Accès privé</div>
+    <div class="admin-login-erreur" id="loginErreur">Mot de passe incorrect. Réessayez.</div>
+    <input type="password" class="admin-login-input" id="loginInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')connecterAdmin()" />
+    <button class="btn-ap" style="width:100%;" onclick="connecterAdmin()">Accéder au panneau ✝</button>
+    <br/>
+    <button class="admin-login-annuler" onclick="fermerLogin()">Annuler</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     ADMIN PANEL
+============================================================ -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-header">
+    <div class="admin-header-logo">✝ Sanctuaire des Prières <span>|</span> Administration</div>
+    <button class="admin-fermer" onclick="fermerAdmin()">✕ Fermer</button>
+  </div>
+  <div class="admin-corps">
+
+    <!-- SIDEBAR -->
+    <div class="admin-sidebar">
+      <button class="admin-nav-btn actif" onclick="onglet('dashboard')"><span class="admin-nav-icone">📊</span> Tableau de bord</button>
+      <button class="admin-nav-btn" onclick="onglet('produits')"><span class="admin-nav-icone">📦</span> Prières</button>
+      <button class="admin-nav-btn" onclick="onglet('couvertures')"><span class="admin-nav-icone">🖼️</span> Couvertures</button>
+      <button class="admin-nav-btn" onclick="onglet('telechargements')"><span class="admin-nav-icone">📥</span> Téléchargements</button>
+      <button class="admin-nav-btn" onclick="onglet('dons')"><span class="admin-nav-icone">💝</span> Dons</button>
+      <button class="admin-nav-btn" onclick="onglet('parametres')"><span class="admin-nav-icone">⚙️</span> Paramètres</button>
+    </div>
+
+    <!-- CONTENU -->
+    <div class="admin-contenu">
+
+      <!-- DASHBOARD -->
+      <div class="admin-section actif" id="sec-dashboard">
+        <div class="admin-section-titre">Tableau de bord</div>
+        <div class="admin-stats-grille" id="adminStats"></div>
+        <div class="admin-derniers">
+          <div class="admin-derniers-titre">Derniers téléchargements</div>
+          <table class="admin-table" id="dernieresCommandes">
+            <thead><tr><th>Personne</th><th>Prière</th><th>Date</th></tr></thead>
+            <tbody id="derniersCom"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PRODUITS -->
+      <div class="admin-section" id="sec-produits">
+        <div class="admin-section-titre" style="display:flex;justify-content:space-between;align-items:center;">
+          <span>Gestion des produits</span>
+          <button class="btn-ap sm" onclick="toggleFormAjout()">+ Ajouter</button>
+        </div>
+
+        <!-- Form ajout/édition -->
+        <div class="admin-form" id="formAjout">
+          <div class="admin-form-titre" id="formAjoutTitre">Nouveau produit</div>
+          <input type="hidden" id="editId" value="" />
+          <div class="admin-grille2">
+            <div class="admin-champ">
+              <label>Titre *</label>
+              <input type="text" id="fpTitre" placeholder="Ex: Prières du Matin & du Soir" />
+            </div>
+            <div class="admin-champ">
+              <label>Accès *</label>
+              <select id="fpPayant" onchange="toggleChampsPrix()">
+                <option value="non">Gratuit</option>
+                <option value="oui">Payant</option>
+              </select>
+            </div>
+            <div class="admin-champ" id="blocFpPrix" style="display:none;">
+              <label>Prix (€) *</label>
+              <input type="text" id="fpPrix" placeholder="4.99" />
+            </div>
+            <div class="admin-champ" id="blocFpPrixXOF" style="display:none;">
+              <label>Prix FCFA <em style="opacity:.6;font-size:.8em;">(optionnel — prioritaire sur la conversion)</em></label>
+              <input type="number" id="fpPrixXOF" placeholder="Ex: 3000" min="1" />
+            </div>
+            <div class="admin-champ">
+              <label>Catégorie *</label>
+              <select id="fpCategorie">
+                <option value="prieres">Prières</option>
+                <option value="recueils">Recueils</option>
+                <option value="rituels">Rituels</option>
+              </select>
+            </div>
+            <div class="admin-champ">
+              <label>Icône / Émoji</label>
+              <input type="text" id="fpIcone" placeholder="🙏" />
+            </div>
+            <div class="admin-champ admin-champ-full">
+              <label>Description courte *</label>
+              <textarea id="fpDescCourte" placeholder="Courte description affichée sur la carte..."></textarea>
+            </div>
+            <div class="admin-champ admin-champ-full">
+              <label>Description longue (modale)</label>
+              <textarea id="fpDescLongue" placeholder="Description complète dans la fenêtre de détail..." style="min-height:90px;"></textarea>
+            </div>
+            <div class="admin-champ admin-champ-full">
+              <label>🔗 Lien Google Drive du PDF <em style="opacity:.6;font-size:.8em;">(collez le lien de partage Drive)</em></label>
+              <input type="text" id="fpLienPDF" placeholder="https://drive.google.com/file/d/XXXXX/view?usp=sharing" />
+              <small style="color:var(--creme2);opacity:.45;font-style:italic;font-family:'IM Fell English',serif;margin-top:.3rem;display:block;">Sur Google Drive : clic droit sur le fichier → Partager → Copier le lien → accès "Tous ceux qui ont le lien"</small>
+            </div>
+            <div class="admin-champ">
+              <label>Badge</label>
+              <div class="badge-opts" id="badgeOpts">
+                <button class="badge-opt sel" onclick="selBadge(this,'')">Aucun</button>
+                <button class="badge-opt" onclick="selBadge(this,'Nouveau')">Nouveau</button>
+                <button class="badge-opt" onclick="selBadge(this,'Populaire')">Populaire</button>
+              </div>
+            </div>
+            <div class="admin-champ">
+              <label>Fond de couleur</label>
+              <div class="bg-options" id="bgOpts">
+                <div class="bg-opt bg1 sel" onclick="selBg(this,'bg1')" title="Violet profond"></div>
+                <div class="bg-opt bg2" onclick="selBg(this,'bg2')" title="Rouge sombre"></div>
+                <div class="bg-opt bg3" onclick="selBg(this,'bg3')" title="Vert nuit"></div>
+                <div class="bg-opt bg4" onclick="selBg(this,'bg4')" title="Or nocturne"></div>
+                <div class="bg-opt bg5" onclick="selBg(this,'bg5')" title="Bleu minuit"></div>
+                <div class="bg-opt bg6" onclick="selBg(this,'bg6')" title="Bordeaux"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:.8rem;margin-top:.8rem;">
+            <button class="btn-ap" onclick="sauvegarderProduit()">Sauvegarder</button>
+            <button class="btn-ap sec" onclick="annulerForm()">Annuler</button>
+          </div>
+        </div>
+
+        <!-- Liste produits -->
+        <div id="listeProduits"></div>
+      </div>
+
+      <!-- COUVERTURES -->
+      <div class="admin-section" id="sec-couvertures">
+        <div class="admin-section-titre">Couvertures des prières & recueils</div>
+        <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);opacity:.6;margin-bottom:1.5rem;font-size:.95rem;">
+          Ajoutez une image de couverture pour chaque produit. Collez une URL d'image ou chargez un fichier depuis votre ordinateur.
+        </p>
+        <div class="couv-grille" id="couverturesGrille"></div>
+      </div>
+
+      <!-- TÉLÉCHARGEMENTS -->
+      <div class="admin-section" id="sec-telechargements">
+        <div class="admin-section-titre" style="display:flex;justify-content:space-between;align-items:center;">
+          <span>Téléchargements gratuits</span>
+          <button class="btn-ap sm danger" onclick="if(confirm('Supprimer tout l\'historique des téléchargements ?'))purgerTelechargements()">Tout effacer</button>
+        </div>
+        <div id="telechargementsListe"></div>
+      </div>
+
+      <!-- DONS -->
+      <div class="admin-section" id="sec-dons">
+        <div class="admin-section-titre">Dons reçus</div>
+        <div id="donsListe"></div>
+      </div>
+
+      <!-- PARAMÈTRES -->
+      <div class="admin-section" id="sec-parametres">
+        <div class="admin-section-titre">Paramètres</div>
+
+        <div class="params-section">
+          <div class="params-titre">🔑 Configuration FedaPay (paiements & dons)</div>
+          <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);opacity:.6;font-size:.9rem;margin-bottom:1rem;">FedaPay sert à recevoir le paiement des recueils payants ainsi que les dons volontaires. Récupérez vos clés API sur <a href="https://app.fedapay.com" target="_blank" style="color:var(--or);">app.fedapay.com</a> → Paramètres → Clés API.</p>
+          <div class="admin-champ">
+            <label>Environnement</label>
+            <select id="pFedaEnv">
+              <option value="sandbox">Sandbox (test)</option>
+              <option value="live">Live (production)</option>
+            </select>
+          </div>
+          <div class="admin-champ">
+            <label>Clé publique FedaPay *</label>
+            <input type="text" id="pFedaKey" placeholder="pk_sandbox_XXXXXXXX ou pk_live_XXXXXXXX" />
+          </div>
+          <div class="admin-champ">
+            <label>Taux de conversion EUR → XOF (FCFA)</label>
+            <input type="number" id="pTauxXOF" placeholder="655" />
+          </div>
+          <div class="admin-champ">
+            <label>Montants de don suggérés (FCFA, séparés par des virgules)</label>
+            <input type="text" id="pMontantsDon" placeholder="Ex: 1000,2500,5000,10000" />
+          </div>
+          <p style="font-size:.78rem;color:var(--creme2);opacity:.45;font-style:italic;font-family:'IM Fell English',serif;margin-top:.3rem;">Taux par défaut : 1 EUR = 655 FCFA. Ajustez selon le marché.</p>
+        </div>
+
+        <div class="params-section">
+          <div class="params-titre">📲 WhatsApp de contact</div>
+          <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--creme2);opacity:.6;font-size:.9rem;margin-bottom:1rem;">Les visiteurs pourront vous contacter ou confirmer un don directement sur ce numéro.</p>
+          <div class="admin-champ">
+            <label>Votre numéro WhatsApp * <em style="opacity:.6;font-size:.8em;">(format international, sans espaces)</em></label>
+            <input type="text" id="pWhatsapp" placeholder="Ex: +22997000000" />
+          </div>
+        </div>
+
+        <div class="params-section">
+          <div class="params-titre">Sécurité</div>
+          <div class="admin-champ">
+            <label>Mot de passe actuel</label>
+            <input type="password" id="pAncienMdp" placeholder="••••••••" />
+          </div>
+          <div class="admin-champ">
+            <label>Nouveau mot de passe</label>
+            <input type="password" id="pNouveauMdp" placeholder="••••••••" />
+          </div>
+          <div class="admin-champ">
+            <label>Confirmer le nouveau mot de passe</label>
+            <input type="password" id="pConfirmMdp" placeholder="••••••••" />
+          </div>
+        </div>
+
+        <button class="btn-ap" onclick="sauvegarderParams()">Sauvegarder les paramètres</button>
+      </div>
+
+    </div><!-- /admin-contenu -->
+  </div><!-- /admin-corps -->
+</div><!-- /admin-overlay -->
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* =========================================================
+   FIREBASE INIT
+========================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyD37F9670374_BF8zUMDxQD6Cg2fP24-1c",
+  authDomain: "sanctuaire-acca0.firebaseapp.com",
+  projectId: "sanctuaire-acca0",
+  storageBucket: "sanctuaire-acca0.firebasestorage.app",
+  messagingSenderId: "619402045164",
+  appId: "1:619402045164:web:85e2e5f1180304044a67c9"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Refs Firestore
+const REF_PRODUITS        = db.collection('sdp_config').doc('produits');
+const REF_SETTINGS        = db.collection('sdp_config').doc('settings');
+const REF_TELECHARGEMENTS = db.collection('sdp_telechargements');
+const REF_DONS            = db.collection('sdp_dons');
+
+/* =========================================================
+   DONNÉES PAR DÉFAUT
+========================================================= */
+const PRODUITS_DEFAUT = [
+  {id:'p1',titre:"Prières du Matin & du Soir",categorie:'prieres',bg:'bg1',icone:'🙏',badge:'Populaire',
+   descCourte:"30 prières catholiques pour sanctifier chaque jour, du lever au coucher, en union avec le Christ.",
+   descLongue:"30 prières catholiques pour sanctifier chaque jour, du lever au coucher, en union avec le Christ. Ce recueil comprend des prières de louange, d'action de grâce, de contrition et d'intercession.",
+   payant:false,coverUrl:''},
+  {id:'p2',titre:"Litanies des Saints",categorie:'prieres',bg:'bg2',icone:'✝️',badge:'Nouveau',
+   descCourte:"Les litanies les plus puissantes dédiées aux grands saints intercesseurs de l'Église catholique.",
+   descLongue:"Les litanies les plus puissantes dédiées aux grands saints intercesseurs de l'Église catholique. Chaque litanie est présentée avec son histoire et ses intentions particulières.",
+   payant:false,coverUrl:''},
+  {id:'p3',titre:"Méditations sur la Passion",categorie:'recueils',bg:'bg3',icone:'📖',badge:'Populaire',
+   descCourte:"Un recueil profond de 14 méditations sur le chemin de croix, pour Carême et toute l'année.",
+   descLongue:"Un recueil profond de 14 méditations sur le chemin de croix. Chaque station est accompagnée d'une prière, d'une réflexion spirituelle et d'un acte de contrition, idéal pour le temps de Carême.",
+   payant:true,prix:'6.99',prixXOF:'',coverUrl:''},
+  {id:'p4',titre:"Guide de la Neuvaine",categorie:'rituels',bg:'bg4',icone:'🕯️',badge:'Nouveau',
+   descCourte:"Comment prier une neuvaine efficacement : 9 rituels complets dédiés aux grandes dévotions catholiques.",
+   descLongue:"Comment prier une neuvaine efficacement : 9 rituels complets dédiés aux grandes dévotions catholiques. Ce guide inclut des neuvaines à la Vierge Marie, au Sacré-Cœur, à Saint-Joseph et à plusieurs saints thaumaturges.",
+   payant:false,coverUrl:''},
+  {id:'p5',titre:"Chapelet & Rosaire Contemplatif",categorie:'recueils',bg:'bg5',icone:'📿',badge:'',
+   descCourte:"Priez le chapelet en profondeur avec ce recueil de méditations sur les 20 mystères du rosaire.",
+   descLongue:"Priez le chapelet en profondeur avec ce recueil de méditations sur les 20 mystères du rosaire. Chaque mystère est développé en une page de méditation contemplative avec une application pratique à la vie chrétienne.",
+   payant:true,prix:'4.49',prixXOF:'',coverUrl:''},
+  {id:'p6',titre:"Bénédictions du Foyer Chrétien",categorie:'rituels',bg:'bg6',icone:'🌹',badge:'',
+   descCourte:"Rituels et prières pour bénir votre maison, vos enfants, vos repas et les grandes étapes de la vie familiale.",
+   descLongue:"Rituels et prières pour bénir votre maison, vos enfants, vos repas et les grandes étapes de la vie familiale. Ce guide complet comprend des cérémonies pour Noël, Pâques, les anniversaires et les temps forts de l'Église.",
+   payant:false,coverUrl:''}
+];
+
+const SETTINGS_DEFAUT = {
+  password:'admin123',
+  fedaKey:'pk_live_hefMW_4YGGGutPtDu8GJViGv',
+  fedaEnv:'live',
+  tauxXOF:655,
+  whatsapp:'+22994173608',
+  montantsDon:'1000,2500,5000,10000'
+};
+
+/* =========================================================
+   ÉTAT LOCAL (cache)
+========================================================= */
+let produits = JSON.parse(localStorage.getItem('sdp_produits')||'null') || PRODUITS_DEFAUT;
+let telechargements = [];
+let dons = [];
+let settings  = JSON.parse(localStorage.getItem('sdp_settings')||'null') || {...SETTINGS_DEFAUT};
+
+function uid(){return 'id_'+Date.now()+'_'+Math.random().toString(36).slice(2);}
+
+// Convertit n'importe quel lien Google Drive en lien de téléchargement direct
+function convertirLienDrive(lien){
+  if(!lien)return '';
+  // Extraire le FILE_ID depuis différents formats de lien Drive
+  const match=lien.match(/\/d\/([a-zA-Z0-9_-]{10,})/)||lien.match(/id=([a-zA-Z0-9_-]{10,})/);
+  if(match)return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+  return lien; // retourner tel quel si format inconnu
+}
+
+/* =========================================================
+   FIRESTORE — LECTURE AU DÉMARRAGE
+========================================================= */
+async function chargerDepuisFirestore(){
+  try{
+    // Produits
+    const docP = await REF_PRODUITS.get();
+    if(docP.exists && docP.data().items && docP.data().items.length){
+      produits = docP.data().items;
+      localStorage.setItem('sdp_produits', JSON.stringify(produits));
+    } else {
+      // Première fois : envoyer les produits par défaut dans Firestore
+      await REF_PRODUITS.set({items: produits});
+    }
+    // Paramètres
+    const docS = await REF_SETTINGS.get();
+    if(docS.exists){
+      settings = {...SETTINGS_DEFAUT, ...docS.data()};
+      localStorage.setItem('sdp_settings', JSON.stringify(settings));
+    } else {
+      await REF_SETTINGS.set(settings);
+    }
+    // Téléchargements (tri par date décroissante)
+    const snapT = await REF_TELECHARGEMENTS.orderBy('dateTs','desc').limit(200).get();
+    telechargements = snapT.docs.map(d=>({id:d.id,...d.data()}));
+    // Dons (tri par date décroissante)
+    const snapD = await REF_DONS.orderBy('dateTs','desc').limit(200).get();
+    dons = snapD.docs.map(d=>({id:d.id,...d.data()}));
+  } catch(e){
+    console.warn('Firestore hors ligne, mode local.', e);
+  }
+  // Toujours rafraîchir la boutique après chargement Firestore
+  rendreProduits(filtreActuel);
+}
+
+/* =========================================================
+   FIRESTORE — SAUVEGARDE
+========================================================= */
+async function sauveProduits(){
+  localStorage.setItem('sdp_produits', JSON.stringify(produits));
+  try{ await REF_PRODUITS.set({items: produits}); }
+  catch(e){ console.warn('Sync produits échoué:', e); }
+}
+
+async function sauveTelechargement(tel){
+  // tel.id = identifiant local ; on l'utilise comme ID Firestore
+  const {id, ...data} = tel;
+  try{
+    await REF_TELECHARGEMENTS.doc(id).set({...data, dateTs: firebase.firestore.Timestamp.now()});
+  } catch(e){ console.warn('Sync téléchargement échoué:', e); }
+}
+
+async function sauveDon(don){
+  const {id, ...data} = don;
+  try{
+    await REF_DONS.doc(id).set({...data, dateTs: firebase.firestore.Timestamp.now()});
+  } catch(e){ console.warn('Sync don échoué:', e); }
+}
+
+async function sauveSettings(){
+  localStorage.setItem('sdp_settings', JSON.stringify(settings));
+  try{ await REF_SETTINGS.set(settings); }
+  catch(e){ console.warn('Sync settings échoué:', e); }
+}
+
+/* =========================================================
+   LISTENERS TEMPS RÉEL (admin)
+========================================================= */
+let unsubscribeTelechargements = null;
+let unsubscribeDons = null;
+
+function activerListenerCommandes(){
+  if(!unsubscribeTelechargements){
+    unsubscribeTelechargements = REF_TELECHARGEMENTS
+      .orderBy('dateTs','desc')
+      .onSnapshot(snap=>{
+        telechargements = snap.docs.map(d=>({id:d.id,...d.data()}));
+        if(document.getElementById('adminOverlay').classList.contains('ouvert')){
+          rendreDashboard();
+          if(document.getElementById('sec-telechargements').classList.contains('actif'))
+            rendreTelechargements();
+        }
+      }, e=>console.warn('Listener téléchargements:', e));
+  }
+  if(!unsubscribeDons){
+    unsubscribeDons = REF_DONS
+      .orderBy('dateTs','desc')
+      .onSnapshot(snap=>{
+        dons = snap.docs.map(d=>({id:d.id,...d.data()}));
+        if(document.getElementById('adminOverlay').classList.contains('ouvert')){
+          rendreDashboard();
+          if(document.getElementById('sec-dons').classList.contains('actif'))
+            rendreDons();
+        }
+      }, e=>console.warn('Listener dons:', e));
+  }
+}
+
+function desactiverListenerCommandes(){
+  if(unsubscribeTelechargements){ unsubscribeTelechargements(); unsubscribeTelechargements=null; }
+  if(unsubscribeDons){ unsubscribeDons(); unsubscribeDons=null; }
+}
+
+/* =========================================================
+   ÉTOILES
+========================================================= */
+const cE=document.getElementById('etoiles');
+for(let i=0;i<80;i++){
+  const e=document.createElement('div');e.className='etoile';
+  const t=Math.random()*2+1;
+  e.style.cssText=`width:${t}px;height:${t}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${(Math.random()*4+2).toFixed(1)}s;--del:${(Math.random()*5).toFixed(1)}s;--op:${(Math.random()*.5+.2).toFixed(2)};`;
+  cE.appendChild(e);
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+document.getElementById('burgerBtn').addEventListener('click',()=>{document.getElementById('navbar').classList.toggle('menu-ouvert');});
+
+/* =========================================================
+   REVEAL
+========================================================= */
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.revele').forEach(el=>obs.observe(el));
+
+/* =========================================================
+   FILTRES
+========================================================= */
+let filtreActuel='tous';
+function filtrer(cat){
+  filtreActuel=cat;
+  document.querySelectorAll('.filtre-btn').forEach(b=>{
+    const oc=b.getAttribute('onclick')||'';
+    b.classList.toggle('actif',oc.includes("'"+cat+"'"));
+  });
+  if(cat==='tous')document.querySelectorAll('.filtre-btn')[0].classList.add('actif');
+  rendreProduits(cat);
+  document.getElementById('boutique').scrollIntoView({behavior:'smooth'});
+}
+
+/* =========================================================
+   RENDU PRODUITS
+========================================================= */
+function rendreProduits(cat='tous'){
+  const grille=document.getElementById('produitsGrille');
+  const liste=cat==='tous'?produits:produits.filter(p=>p.categorie===cat);
+  if(!liste.length){grille.innerHTML='<p style="text-align:center;grid-column:1/-1;font-family:\'IM Fell English\',serif;font-style:italic;color:var(--creme2);opacity:.4;padding:4rem 0;">Aucun produit dans cette catégorie.</p>';return;}
+  grille.innerHTML=liste.map(p=>{
+    const badge=p.badge?`<span class="badge-${p.badge==='Nouveau'?'nouveau':'populaire'}">${p.badge}</span>`:'';
+    const imgContent=p.coverUrl?`<img src="${p.coverUrl}" alt="${p.titre}" onerror="this.style.display='none'">`:`<span>${p.icone}</span>`;
+    return `<div class="produit-carte" data-categorie="${p.categorie}" data-id="${p.id}">
+      <div class="produit-image ${p.coverUrl?'has-cover':p.bg}">${imgContent}${badge}</div>
+      <div class="produit-corps">
+        <div class="produit-categorie">— ${p.categorie.charAt(0).toUpperCase()+p.categorie.slice(1)}</div>
+        <h3 class="produit-nom">${p.titre}</h3>
+        <p class="produit-desc">${p.descCourte}</p>
+      </div>
+      <div class="produit-pied">
+        <div class="produit-gratuit">${p.payant?`${p.prix} €`:'🎁 Gratuit'}</div>
+        <button class="btn-acheter" onclick="ouvrirModal('${p.id}')">${p.payant?'Voir & Acheter':'Voir & Recevoir'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* =========================================================
+   MODAL PRODUIT
+========================================================= */
+let produitActuel=null;
+let etapeActuelle=1;
+let deviseChoisie='XOF';
+
+function choisirDevise(d){
+  deviseChoisie=d;
+  document.getElementById('deviseXOF').classList.toggle('actif',d==='XOF');
+  document.getElementById('deviseEUR').classList.toggle('actif',d==='EUR');
+  afficherMontant();
+}
+
+function afficherMontant(){
+  const p=produitActuel; if(!p||!p.payant)return;
+  const taux=parseFloat(String(settings.tauxXOF).replace(',','.'))||655;
+  const prixXOF=p.prixXOF?parseInt(p.prixXOF):Math.round(parseFloat(String(p.prix).replace(',','.'))*taux);
+  const el=document.getElementById('montantAffiche');
+  if(deviseChoisie==='XOF'){
+    el.textContent='Montant : '+prixXOF.toLocaleString('fr-FR')+' FCFA';
+  } else {
+    el.textContent='Montant : '+parseFloat(p.prix).toFixed(2)+' €';
+  }
+}
+
+function ouvrirModal(id){
+  const p=produits.find(x=>x.id===id);
+  if(!p)return;
+  produitActuel=p;
+  const imgEl=document.getElementById('modalImg');
+  if(p.coverUrl){imgEl.className='modal-img has-cover';imgEl.innerHTML=`<img src="${p.coverUrl}" alt="${p.titre}">`;}
+  else{imgEl.className='modal-img '+p.bg;imgEl.innerHTML=p.icone;}
+  document.getElementById('modalCategorie').textContent='— '+p.categorie.charAt(0).toUpperCase()+p.categorie.slice(1);
+  document.getElementById('modalTitre').textContent=p.titre;
+  document.getElementById('modalDesc').textContent=p.descLongue||p.descCourte;
+  ['cfPrenom','cfNom','cfEmail','cfPhone'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fedaErreur').style.display='none';
+
+  if(p.payant){
+    document.getElementById('modalGratuit').textContent=p.prix+' €';
+    document.querySelector('#etape1 .modal-acheter').textContent='Commander ce PDF →';
+    document.getElementById('cfTitre').textContent='✝ Vos informations de livraison';
+    document.getElementById('cfNoteTexte').textContent="Renseignez votre e-mail. Votre PDF vous sera envoyé à cette adresse après confirmation du paiement.";
+    document.getElementById('deviseSelectBlock').style.display='block';
+    document.getElementById('btnPayerTexte').textContent='Payer avec FedaPay →';
+    document.getElementById('cfBasNote').textContent='Paiement sécurisé · Mobile Money · Carte bancaire · FedaPay';
+    deviseChoisie='XOF';
+    document.getElementById('deviseXOF').classList.add('actif');
+    document.getElementById('deviseEUR').classList.remove('actif');
+    afficherMontant();
+  } else {
+    document.getElementById('modalGratuit').textContent='🎁 Offert gratuitement';
+    document.querySelector('#etape1 .modal-acheter').textContent='Recevoir ce PDF →';
+    document.getElementById('cfTitre').textContent='✝ Recevoir votre PDF gratuitement';
+    document.getElementById('cfNoteTexte').textContent="Renseignez votre e-mail. Votre PDF vous sera envoyé instantanément à cette adresse — aucun paiement requis.";
+    document.getElementById('deviseSelectBlock').style.display='none';
+    document.getElementById('btnPayerTexte').textContent='Recevoir mon PDF →';
+    document.getElementById('cfBasNote').textContent='100% gratuit · Aucune carte bancaire requise';
+  }
+
+  document.getElementById('btnPayer').disabled=false;
+  allerEtape(1);
+  document.getElementById('modalOverlay').classList.add('ouvert');
+  document.body.style.overflow='hidden';
+}
+function allerEtape(n){
+  etapeActuelle=n;
+  [1,2,3].forEach(i=>{
+    document.getElementById('etape'+i).classList.toggle('active',i===n);
+    const et=document.getElementById('et'+i);
+    et.classList.remove('active','done');
+    if(i===n)et.classList.add('active');
+    else if(i<n)et.classList.add('done');
+  });
+}
+function fermerModal(){document.getElementById('modalOverlay').classList.remove('ouvert');document.body.style.overflow='';}
+function fermerModalClic(e){if(e.target===document.getElementById('modalOverlay'))fermerModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){fermerModal();fermerModalDon();fermerAdmin();fermerLogin();}});
+
+/* =========================================================
+   RÉCEPTION GRATUITE DU PDF / ACHAT PAYANT
+========================================================= */
+const WA_SVG='<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.533 5.854L.057 23.882l6.18-1.45A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.871 9.871 0 01-5.031-1.378l-.361-.214-3.741.981.999-3.648-.235-.374A9.867 9.867 0 012.1 12c0-5.459 4.441-9.9 9.9-9.9s9.9 4.441 9.9 9.9-4.441 9.9-9.9 9.9z"/></svg>';
+
+// Point d'entrée unique du bouton étape 2 : dirige vers le flux gratuit ou payant
+function validerCommandeProduit(){
+  if(produitActuel && produitActuel.payant) lancerPaiementProduit();
+  else recevoirGratuitement();
+}
+
+async function recevoirGratuitement(){
+  const prenom=document.getElementById('cfPrenom').value.trim();
+  const nom=document.getElementById('cfNom').value.trim();
+  const email=document.getElementById('cfEmail').value.trim();
+  const phone=document.getElementById('cfPhone').value.trim();
+  const errEl=document.getElementById('fedaErreur');
+  errEl.style.display='none';
+
+  if(!prenom){errEl.textContent='Veuillez saisir votre prénom.';errEl.style.display='block';return;}
+  if(!nom){errEl.textContent='Veuillez saisir votre nom.';errEl.style.display='block';return;}
+  if(!email||!email.includes('@')){errEl.textContent='Veuillez saisir un e-mail valide.';errEl.style.display='block';return;}
+
+  const p=produitActuel;
+  const btn=document.getElementById('btnPayer');
+  btn.disabled=true;
+  document.getElementById('btnPayerTexte').textContent='Préparation de votre PDF…';
+
+  const lienDirect=convertirLienDrive(p.lienPDF||'');
+  const tel={
+    id:uid(),
+    produitId:p.id,
+    produitTitre:p.titre,
+    payant:false,
+    nomClient:prenom+' '+nom,
+    emailClient:email,
+    phoneClient:phone,
+    date:new Date().toLocaleString('fr-FR')
+  };
+  telechargements.unshift(tel);
+  await sauveTelechargement(tel);
+
+  btn.disabled=false;
+  document.getElementById('btnPayerTexte').textContent='Recevoir mon PDF →';
+
+  const wa=settings.whatsapp||'';
+  document.getElementById('confirmIco').textContent='✅';
+  document.getElementById('confirmTitre').textContent='Votre PDF est prêt !';
+
+  if(lienDirect){
+    document.getElementById('confirmTexte').textContent='Béni(e) soyez-vous. Téléchargez votre PDF ci-dessous :';
+    document.getElementById('confirmDetails').innerHTML=`
+      <div style="text-align:center;padding:1rem 0;">
+        <a class="btn-download" href="${lienDirect}" target="_blank" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/></svg>
+          Télécharger mon PDF
+        </a>
+        <p class="ref-note" style="margin-top:1rem;">📦 <strong style="color:var(--or)">${p.titre}</strong></p>
+        <p class="ref-note" style="margin-top:.4rem;">Si le téléchargement ne démarre pas, <a href="${lienDirect}" target="_blank" style="color:var(--or);">cliquez ici</a>.</p>
+      </div>
+    `;
+  } else {
+    const msgWA=`Bonjour, je souhaite recevoir "${p.titre}". Mon e-mail : ${email}. Merci de m'envoyer le PDF.`;
+    const urlWA=wa?`https://wa.me/${wa.replace(/\D/g,'')}?text=${encodeURIComponent(msgWA)}`:'';
+    document.getElementById('confirmTexte').textContent='Béni(e) soyez-vous. Ce PDF n\'est pas encore en ligne — contactez-nous pour le recevoir :';
+    document.getElementById('confirmDetails').innerHTML=`
+      <div class="ref-box">
+        <p class="ref-note">📦 <strong style="color:var(--or)">${p.titre}</strong></p>
+        <p class="ref-note" style="margin-top:.4rem;">📧 Envoi à → <strong style="color:var(--or-clair)">${email}</strong></p>
+        ${urlWA?`<div class="ref-actions" style="margin-top:.8rem;justify-content:center;"><a class="btn-wa" href="${urlWA}" target="_blank">${WA_SVG} Nous contacter</a></div>`:''}
+      </div>
+    `;
+  }
+  allerEtape(3);
+}
+
+async function lancerPaiementProduit(){
+  const prenom=document.getElementById('cfPrenom').value.trim();
+  const nom=document.getElementById('cfNom').value.trim();
+  const email=document.getElementById('cfEmail').value.trim();
+  const phone=document.getElementById('cfPhone').value.trim();
+  const errEl=document.getElementById('fedaErreur');
+  errEl.style.display='none';
+
+  if(!prenom){errEl.textContent='Veuillez saisir votre prénom.';errEl.style.display='block';return;}
+  if(!nom){errEl.textContent='Veuillez saisir votre nom.';errEl.style.display='block';return;}
+  if(!email||!email.includes('@')){errEl.textContent='Veuillez saisir un e-mail valide.';errEl.style.display='block';return;}
+
+  const fedaKey=settings.fedaKey;
+  const fedaEnv=settings.fedaEnv||'live';
+  if(!fedaKey){errEl.textContent='Paiement non configuré. Contactez l\'administrateur.';errEl.style.display='block';return;}
+
+  const p=produitActuel;
+  const taux=parseFloat(String(settings.tauxXOF).replace(',','.'))||655;
+  let montant, devise;
+  if(deviseChoisie==='EUR'){
+    montant=Math.round(parseFloat(String(p.prix).replace(',','.'))*100)/100;
+    devise='EUR';
+  } else {
+    montant=p.prixXOF?parseInt(p.prixXOF):Math.round(parseFloat(String(p.prix).replace(',','.'))*taux);
+    devise='XOF';
+  }
+
+  if(!montant || isNaN(montant) || montant <= 0){
+    errEl.textContent='Erreur : montant invalide. Contactez l\'administrateur.';
+    errEl.style.display='block';
+    console.error('Montant invalide:', {prix:p.prix, devise, montant});
+    return;
+  }
+
+  const btn=document.getElementById('btnPayer');
+  btn.disabled=true;
+  document.getElementById('btnPayerTexte').textContent='Ouverture du paiement…';
+
+  try{
+    const widget=window.FedaPay.init({
+      public_key:fedaKey,
+      environment:fedaEnv,
+      transaction:{
+        amount:montant,
+        description:'Sanctuaire des Prières — '+p.titre,
+        currency:{iso:devise}
+      },
+      customer:{firstname:prenom,lastname:nom,email:email,phone_number:phone||undefined},
+      onComplete:async function(resp){
+        btn.disabled=false;
+        document.getElementById('btnPayerTexte').textContent='Payer avec FedaPay →';
+        const FP=window['FedaPay'];
+        if(resp.reason===FP.DIALOG_DISMISSED){
+          errEl.textContent='Paiement annulé. Vous pouvez réessayer.';
+          errEl.style.display='block';
+          return;
+        }
+        const t=resp.transaction;
+        const statut=t&&(t.status==='approved'||t.status==='approved_and_captured')?'paye':'echoue';
+        if(statut==='echoue'){
+          errEl.textContent='Le paiement n\'a pas abouti. Veuillez réessayer.';
+          errEl.style.display='block';
+          return;
+        }
+        const ref=t?t.reference:'—';
+        const montantAff=devise==='EUR'?montant.toFixed(2)+' €':montant.toLocaleString('fr-FR')+' FCFA';
+        const lienDirect=convertirLienDrive(p.lienPDF||'');
+        const tel={
+          id:uid(),
+          produitId:p.id,
+          produitTitre:p.titre,
+          payant:true,
+          montant:montant,
+          devise:devise,
+          montantXOF:devise==='XOF'?montant:Math.round(montant*taux),
+          nomClient:prenom+' '+nom,
+          emailClient:email,
+          phoneClient:phone,
+          date:new Date().toLocaleString('fr-FR'),
+          transactionId:t?t.id:'—',
+          transactionRef:ref
+        };
+        telechargements.unshift(tel);
+        await sauveTelechargement(tel);
+
+        const wa=settings.whatsapp||'';
+        const msgWA=`Bonjour, j'ai effectué le paiement pour "${p.titre}" (${montantAff}).\nMa référence FedaPay : ${ref}\nMon e-mail : ${email}\nMerci de m'envoyer le PDF.`;
+        const urlWA=wa?`https://wa.me/${wa.replace(/\D/g,'')}?text=${encodeURIComponent(msgWA)}`:'';
+        document.getElementById('confirmIco').textContent='✅';
+        document.getElementById('confirmTitre').textContent='Paiement confirmé — Merci !';
+
+        if(lienDirect){
+          document.getElementById('confirmTexte').textContent='Béni(e) soyez-vous. Votre paiement a été reçu. Téléchargez votre PDF ci-dessous :';
+          document.getElementById('confirmDetails').innerHTML=`
+            <div style="text-align:center;padding:1rem 0;">
+              <a class="btn-download" href="${lienDirect}" target="_blank" download>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/></svg>
+                Télécharger mon PDF
+              </a>
+              <p class="ref-note" style="margin-top:1rem;">📦 <strong style="color:var(--or)">${p.titre}</strong></p>
+              <p class="ref-note" style="margin-top:.4rem;">Si le téléchargement ne démarre pas, <a href="${lienDirect}" target="_blank" style="color:var(--or);">cliquez ici</a>.</p>
+            </div>
+            <div class="ref-box" style="margin-top:1rem;">
+              <div class="ref-label">📋 Référence de paiement (à conserver)</div>
+              <div class="ref-valeur">${ref}</div>
+              <div class="ref-actions">
+                <button class="btn-copier" onclick="copierRef('${ref}')">📋 Copier</button>
+                ${urlWA?`<a class="btn-wa" href="${urlWA}" target="_blank">${WA_SVG} Confirmer sur WhatsApp</a>`:''}
+              </div>
+            </div>
+          `;
+        } else {
+          document.getElementById('confirmTexte').textContent='Béni(e) soyez-vous. Pour recevoir votre PDF rapidement, envoyez votre référence à l\'administrateur :';
+          document.getElementById('confirmDetails').innerHTML=`
+            <div class="ref-box">
+              <div class="ref-label">📋 Votre référence de paiement</div>
+              <div class="ref-valeur">${ref}</div>
+              <div class="ref-actions">
+                <button class="btn-copier" onclick="copierRef('${ref}')">📋 Copier</button>
+                ${urlWA?`<a class="btn-wa" href="${urlWA}" target="_blank">${WA_SVG} Envoyer sur WhatsApp</a>`:''}
+              </div>
+            </div>
+            <p class="ref-note">📦 <strong style="color:var(--or)">${p.titre}</strong> — ${montantAff}</p>
+            <p class="ref-note" style="margin-top:.4rem;">📧 PDF → <strong style="color:var(--or-clair)">${email}</strong></p>
+          `;
+        }
+        allerEtape(3);
+      }
+    });
+    widget.open();
+  }catch(e){
+    btn.disabled=false;
+    document.getElementById('btnPayerTexte').textContent='Payer avec FedaPay →';
+    errEl.textContent='Erreur de paiement. Vérifiez la clé FedaPay dans les paramètres.';
+    errEl.style.display='block';
+    console.error('FedaPay:',e);
+  }
+}
+
+/* =========================================================
+   DONS LIBRES (FedaPay)
+========================================================= */
+let deviseDon='XOF';
+let montantDonChoisi=0;
+
+function ouvrirModalDon(){
+  document.getElementById('donErreur').style.display='none';
+  ['donPrenom','donNom','donEmail','donPhone','donMontantLibre'].forEach(id=>document.getElementById(id).value='');
+  deviseDon='XOF';
+  document.getElementById('donDeviseXOF').classList.add('actif');
+  document.getElementById('donDeviseEUR').classList.remove('actif');
+  rendreMontantsDon();
+  allerEtapeDon(1);
+  document.getElementById('donModalOverlay').classList.add('ouvert');
+  document.body.style.overflow='hidden';
+}
+function fermerModalDon(){document.getElementById('donModalOverlay').classList.remove('ouvert');document.body.style.overflow='';}
+function fermerModalDonClic(e){if(e.target===document.getElementById('donModalOverlay'))fermerModalDon();}
+
+function allerEtapeDon(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('etapeDon'+i).classList.toggle('active',i===n);
+    const et=document.getElementById('etd'+i);
+    et.classList.remove('active','done');
+    if(i===n)et.classList.add('active');
+    else if(i<n)et.classList.add('done');
+  });
+}
+
+function rendreMontantsDon(){
+  const taux=parseFloat(String(settings.tauxXOF).replace(',','.'))||655;
+  const listeXOF=(settings.montantsDon||'1000,2500,5000,10000').split(',').map(m=>parseInt(m.trim())).filter(Boolean);
+  const grille=document.getElementById('donMontantsGrille');
+  grille.innerHTML=listeXOF.map(m=>{
+    const val=deviseDon==='XOF'?m:Math.round((m/taux)*100)/100;
+    const label=deviseDon==='XOF'?val.toLocaleString('fr-FR')+' FCFA':val.toFixed(2)+' €';
+    return `<div class="bg-opt" style="width:auto;height:auto;padding:.7rem .5rem;background:var(--fond3);border:1px solid rgba(201,168,76,.3);color:var(--creme);font-family:'Cinzel',serif;font-size:.85rem;text-align:center;cursor:pointer;border-radius:0;" data-montant="${m}" onclick="choisirMontantDon(${m},this)">${label}</div>`;
+  }).join('');
+}
+
+function choisirDeviseDon(d){
+  deviseDon=d;
+  document.getElementById('donDeviseXOF').classList.toggle('actif',d==='XOF');
+  document.getElementById('donDeviseEUR').classList.toggle('actif',d==='EUR');
+  rendreMontantsDon();
+  montantDonChoisi=0;
+  document.getElementById('donMontantLibre').value='';
+}
+function choisirMontantDon(m,el){
+  montantDonChoisi=m;
+  document.getElementById('donMontantLibre').value='';
+  document.querySelectorAll('#donMontantsGrille .bg-opt').forEach(b=>b.style.borderColor='rgba(201,168,76,.3)');
+  el.style.borderColor='var(--or)';
+}
+function selectionMontantLibre(){
+  const v=parseFloat(document.getElementById('donMontantLibre').value);
+  if(v>0){
+    montantDonChoisi=deviseDon==='XOF'?Math.round(v):v;
+    document.querySelectorAll('#donMontantsGrille .bg-opt').forEach(b=>b.style.borderColor='rgba(201,168,76,.3)');
+  }
+}
+function validerMontantDon(){
+  if(!montantDonChoisi||montantDonChoisi<=0){showToast('Veuillez choisir ou saisir un montant de don.');return;}
+  allerEtapeDon(2);
+}
+
+function lancerPaiementDon(){
+  const prenom=document.getElementById('donPrenom').value.trim();
+  const nom=document.getElementById('donNom').value.trim();
+  const email=document.getElementById('donEmail').value.trim();
+  const phone=document.getElementById('donPhone').value.trim();
+  const errEl=document.getElementById('donErreur');
+  errEl.style.display='none';
+
+  if(!prenom){errEl.textContent='Veuillez saisir votre prénom.';errEl.style.display='block';return;}
+  if(!nom){errEl.textContent='Veuillez saisir votre nom.';errEl.style.display='block';return;}
+  if(!email||!email.includes('@')){errEl.textContent='Veuillez saisir un e-mail valide.';errEl.style.display='block';return;}
+
+  const fedaKey=settings.fedaKey;
+  const fedaEnv=settings.fedaEnv||'live';
+  if(!fedaKey){errEl.textContent='Dons non configurés. Contactez l\'administrateur.';errEl.style.display='block';return;}
+
+  const montant=montantDonChoisi;
+  const devise=deviseDon;
+  if(!montant||isNaN(montant)||montant<=0){errEl.textContent='Montant de don invalide.';errEl.style.display='block';return;}
+
+  const taux=parseFloat(String(settings.tauxXOF).replace(',','.'))||655;
+  const btn=document.getElementById('btnPayerDon');
+  btn.disabled=true;
+  document.getElementById('btnPayerDonTexte').textContent='Ouverture du paiement…';
+
+  try{
+    const widget=window.FedaPay.init({
+      public_key:fedaKey,
+      environment:fedaEnv,
+      transaction:{
+        amount:montant,
+        description:'Don — Sanctuaire des Prières',
+        currency:{iso:devise}
+      },
+      customer:{firstname:prenom,lastname:nom,email:email,phone_number:phone||undefined},
+      onComplete:async function(resp){
+        btn.disabled=false;
+        document.getElementById('btnPayerDonTexte').textContent='Faire le don →';
+        const FP=window['FedaPay'];
+        if(resp.reason===FP.DIALOG_DISMISSED){
+          errEl.textContent='Don annulé. Vous pouvez réessayer.';
+          errEl.style.display='block';
+          return;
+        }
+        const t=resp.transaction;
+        const statut=t&&(t.status==='approved'||t.status==='approved_and_captured')?'recu':'echoue';
+        if(statut==='echoue'){
+          errEl.textContent='Le don n\'a pas abouti. Veuillez réessayer.';
+          errEl.style.display='block';
+          return;
+        }
+        const ref=t?t.reference:'—';
+        const montantAff=devise==='EUR'?montant.toFixed(2)+' €':montant.toLocaleString('fr-FR')+' FCFA';
+        const don={
+          id:uid(),
+          montant:montant,
+          devise:devise,
+          montantXOF:devise==='XOF'?montant:Math.round(montant*taux),
+          nomDonateur:prenom+' '+nom,
+          emailDonateur:email,
+          phoneDonateur:phone,
+          date:new Date().toLocaleString('fr-FR'),
+          transactionId:t?t.id:'—',
+          transactionRef:ref
+        };
+        dons.unshift(don);
+        await sauveDon(don);
+        document.getElementById('confirmDonTexte').textContent='Béni(e) soyez-vous. Votre don de '+montantAff+' a bien été reçu. Merci pour votre générosité !';
+        document.getElementById('confirmDonDetails').innerHTML=`
+          <div class="ref-box">
+            <div class="ref-label">📋 Référence de votre don</div>
+            <div class="ref-valeur">${ref}</div>
+            <div class="ref-actions">
+              <button class="btn-copier" onclick="copierRef('${ref}')">📋 Copier</button>
+            </div>
+          </div>
+        `;
+        allerEtapeDon(3);
+      }
+    });
+    widget.open();
+  }catch(e){
+    btn.disabled=false;
+    document.getElementById('btnPayerDonTexte').textContent='Faire le don →';
+    errEl.textContent='Erreur de paiement. Vérifiez la clé FedaPay dans les paramètres.';
+    errEl.style.display='block';
+    console.error('FedaPay don:',e);
+  }
+}
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+function sInscrire(){
+  const email=document.getElementById('newsletterEmail').value.trim();
+  if(!email||!email.includes('@'))showToast('Veuillez entrer un e-mail valide.');
+  else{showToast('Béni(e) soit ! Vous êtes inscrit(e) ✝');document.getElementById('newsletterEmail').value='';}
+}
+
+/* =========================================================
+   TOAST & COPIER
+========================================================= */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('visible');
+  setTimeout(()=>t.classList.remove('visible'),3500);
+}
+function copierRef(ref){
+  navigator.clipboard.writeText(ref).then(()=>showToast('Référence copiée ! ✝')).catch(()=>{
+    const el=document.createElement('textarea');el.value=ref;el.style.cssText='position:fixed;opacity:0';
+    document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);
+    showToast('Référence copiée ! ✝');
+  });
+}
+
+/* =========================================================
+   ACCÈS ADMIN
+========================================================= */
+let clicsAdmin=0,timerClics=null;
+document.getElementById('adminTrigger').addEventListener('click',()=>{
+  clicsAdmin++;
+  clearTimeout(timerClics);
+  timerClics=setTimeout(()=>clicsAdmin=0,1500);
+  if(clicsAdmin>=3){clicsAdmin=0;ouvrirLogin();}
+});
+
+function ouvrirLogin(){
+  document.getElementById('loginInput').value='';
+  document.getElementById('loginErreur').classList.remove('visible');
+  document.getElementById('adminLoginOverlay').classList.add('ouvert');
+  setTimeout(()=>document.getElementById('loginInput').focus(),100);
+}
+function fermerLogin(){document.getElementById('adminLoginOverlay').classList.remove('ouvert');}
+
+function connecterAdmin(){
+  const mdp=document.getElementById('loginInput').value;
+  if(mdp===settings.password){fermerLogin();ouvrirAdmin();}
+  else{
+    document.getElementById('loginErreur').classList.add('visible');
+    document.getElementById('loginInput').value='';
+    document.getElementById('loginInput').focus();
+  }
+}
+
+/* =========================================================
+   ADMIN PANEL
+========================================================= */
+function ouvrirAdmin(){
+  document.getElementById('adminOverlay').classList.add('ouvert');
+  document.body.style.overflow='hidden';
+  activerListenerCommandes(); // listener temps réel
+  rendreDashboard();
+}
+function fermerAdmin(){
+  document.getElementById('adminOverlay').classList.remove('ouvert');
+  document.body.style.overflow='';
+  desactiverListenerCommandes();
+}
+
+function onglet(sec){
+  document.querySelectorAll('.admin-nav-btn').forEach(b=>b.classList.remove('actif'));
+  event.currentTarget.classList.add('actif');
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('actif'));
+  document.getElementById('sec-'+sec).classList.add('actif');
+  if(sec==='dashboard')rendreDashboard();
+  else if(sec==='produits')rendreProduitsList();
+  else if(sec==='couvertures')rendreCouvertures();
+  else if(sec==='telechargements')rendreTelechargements();
+  else if(sec==='dons')rendreDons();
+  else if(sec==='parametres')rendreParams();
+}
+
+/* DASHBOARD */
+function rendreDashboard(){
+  const ventes=telechargements.filter(t=>t.payant);
+  const gratuits=telechargements.filter(t=>!t.payant);
+  const venteXOF=ventes.filter(t=>t.devise==='XOF'||!t.devise).reduce((s,t)=>s+(t.montantXOF||t.montant||0),0);
+  const venteEUR=ventes.filter(t=>t.devise==='EUR').reduce((s,t)=>s+(t.montant||0),0);
+  const donXOF=dons.filter(d=>d.devise==='XOF'||!d.devise).reduce((s,d)=>s+(d.montantXOF||d.montant||0),0);
+  const donEUR=dons.filter(d=>d.devise==='EUR').reduce((s,d)=>s+(d.montant||0),0);
+  document.getElementById('adminStats').innerHTML=`
+    <div class="admin-stat"><div class="admin-stat-n">${produits.length}</div><div class="admin-stat-l">Prières disponibles</div></div>
+    <div class="admin-stat"><div class="admin-stat-n">${gratuits.length}</div><div class="admin-stat-l">📥 Téléchargements gratuits</div></div>
+    <div class="admin-stat" style="border-color:rgba(201,168,76,.4);"><div class="admin-stat-n" style="color:var(--or-sombre);">${ventes.length}</div><div class="admin-stat-l">💰 Recueils vendus</div></div>
+    <div class="admin-stat" style="border-color:rgba(201,168,76,.3);"><div class="admin-stat-n" style="color:var(--or-sombre);font-size:1rem;">${venteXOF.toLocaleString('fr-FR')} FCFA${venteEUR>0?' · '+venteEUR.toFixed(2)+' €':''}</div><div class="admin-stat-l">Revenu des ventes</div></div>
+    <div class="admin-stat" style="border-color:rgba(39,174,96,.3);"><div class="admin-stat-n" style="color:#27ae60;">${dons.length}</div><div class="admin-stat-l">💝 Dons reçus</div></div>
+    <div class="admin-stat" style="border-color:rgba(39,174,96,.3);"><div class="admin-stat-n" style="color:#27ae60;font-size:1rem;">${donXOF.toLocaleString('fr-FR')} FCFA${donEUR>0?' · '+donEUR.toFixed(2)+' €':''}</div><div class="admin-stat-l">Total des dons</div></div>
+  `;
+  const tbody=document.getElementById('derniersCom');
+  const recent=telechargements.slice(0,5);
+  if(!recent.length){tbody.innerHTML='<tr><td colspan="3" class="admin-vide">Aucun téléchargement pour le moment.</td></tr>';return;}
+  tbody.innerHTML=recent.map(t=>{
+    return `<tr>
+      <td><strong style="color:var(--blanc)">${t.nomClient}</strong><br/><small style="opacity:.6">${t.emailClient}</small></td>
+      <td>${t.produitTitre} ${t.payant?'<span style="color:var(--or-sombre);">💰</span>':''}</td>
+      <td style="opacity:.6;font-size:.82rem;">${t.date}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* PRODUITS LIST */
+function rendreProduitsList(){
+  const el=document.getElementById('listeProduits');
+  if(!produits.length){el.innerHTML='<div class="admin-vide">Aucun produit. Cliquez sur "+ Ajouter".</div>';return;}
+  el.innerHTML=produits.map(p=>{
+    const prev=p.coverUrl
+      ?`<img src="${p.coverUrl}" onerror="this.style.display='none'">`
+      :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">${p.icone}</div>`;
+    return `<div class="pa-item">
+      <div class="pa-prev">${prev}</div>
+      <div class="pa-info">
+        <div class="pa-nom">${p.titre}</div>
+        <div class="pa-meta">${p.categorie} · ${p.payant?`💰 ${p.prix} €`:'🎁 Gratuit'} ${p.badge?'· '+p.badge:''} ${p.lienPDF?'· <span style="color:#27ae60;">✓ PDF lié</span>':'· <span style="color:#e74c3c;opacity:.7;">⚠ Pas de PDF</span>'}</div>
+      </div>
+      <div class="pa-actions">
+        <button class="btn-ap sm sec" onclick="editerProduit('${p.id}')">✏️ Éditer</button>
+        <button class="btn-ap sm danger" onclick="supprimerProduit('${p.id}')">🗑 Sup.</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* FORM produit */
+let bgSelectionne='bg1', badgeSelectionne='';
+
+function toggleChampsPrix(){
+  const payant=document.getElementById('fpPayant').value==='oui';
+  document.getElementById('blocFpPrix').style.display=payant?'block':'none';
+  document.getElementById('blocFpPrixXOF').style.display=payant?'block':'none';
+}
+
+function toggleFormAjout(){
+  const f=document.getElementById('formAjout');
+  if(f.classList.contains('visible')){annulerForm();return;}
+  document.getElementById('formAjoutTitre').textContent='Nouvelle prière';
+  document.getElementById('editId').value='';
+  ['fpTitre','fpDescCourte','fpDescLongue','fpIcone','fpLienPDF','fpPrix','fpPrixXOF'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fpCategorie').value='prieres';
+  document.getElementById('fpPayant').value='non';
+  toggleChampsPrix();
+  bgSelectionne='bg1';badgeSelectionne='';
+  document.querySelectorAll('.bg-opt').forEach(b=>b.classList.toggle('sel',b.classList.contains('bg1')));
+  document.querySelectorAll('.badge-opt').forEach(b=>b.classList.toggle('sel',b.textContent.trim()==='Aucun'));
+  f.classList.add('visible');f.scrollIntoView({behavior:'smooth'});
+}
+function annulerForm(){document.getElementById('formAjout').classList.remove('visible');document.getElementById('editId').value='';}
+function selBg(el,bg){bgSelectionne=bg;document.querySelectorAll('.bg-opt').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');}
+function selBadge(el,badge){badgeSelectionne=badge;document.querySelectorAll('.badge-opt').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');}
+
+async function sauvegarderProduit(){
+  const titre=document.getElementById('fpTitre').value.trim();
+  const descC=document.getElementById('fpDescCourte').value.trim();
+  const payant=document.getElementById('fpPayant').value==='oui';
+  const prix=document.getElementById('fpPrix').value.trim();
+  if(!titre||!descC){showToast('Titre et description courte sont obligatoires.');return;}
+  if(payant&&!prix){showToast('Le prix (€) est obligatoire pour une prière payante.');return;}
+  const editId=document.getElementById('editId').value;
+  if(editId){
+    const idx=produits.findIndex(p=>p.id===editId);
+    if(idx>-1){
+      const old=produits[idx];
+      const pxof=document.getElementById('fpPrixXOF').value;
+      const lien=document.getElementById('fpLienPDF').value.trim();
+      produits[idx]={...old,titre,
+        payant,prix:payant?prix:undefined,prixXOF:payant&&pxof?parseInt(pxof):undefined,
+        lienPDF:lien,
+        categorie:document.getElementById('fpCategorie').value,
+        icone:document.getElementById('fpIcone').value||old.icone,
+        badge:badgeSelectionne,bg:bgSelectionne,
+        descCourte:descC,descLongue:document.getElementById('fpDescLongue').value.trim()||descC};
+    }
+    showToast('Prière mise à jour ✝');
+  }else{
+    const pxof=document.getElementById('fpPrixXOF').value;
+    const lien=document.getElementById('fpLienPDF').value.trim();
+    produits.push({id:uid(),titre,
+      payant,prix:payant?prix:undefined,prixXOF:payant&&pxof?parseInt(pxof):undefined,
+      lienPDF:lien,
+      categorie:document.getElementById('fpCategorie').value,
+      icone:document.getElementById('fpIcone').value||'📄',
+      badge:badgeSelectionne,bg:bgSelectionne,
+      descCourte:descC,descLongue:document.getElementById('fpDescLongue').value.trim()||descC,
+      coverUrl:''});
+    showToast('Prière ajoutée ✝');
+  }
+  await sauveProduits();
+  annulerForm();rendreProduitsList();rendreProduits(filtreActuel);
+}
+
+function editerProduit(id){
+  const p=produits.find(x=>x.id===id);if(!p)return;
+  document.getElementById('formAjoutTitre').textContent='Modifier la prière';
+  document.getElementById('editId').value=id;
+  document.getElementById('fpTitre').value=p.titre;
+  document.getElementById('fpPayant').value=p.payant?'oui':'non';
+  document.getElementById('fpPrix').value=p.prix||'';
+  document.getElementById('fpPrixXOF').value=p.prixXOF||'';
+  toggleChampsPrix();
+  document.getElementById('fpLienPDF').value=p.lienPDF||'';
+  document.getElementById('fpCategorie').value=p.categorie;
+  document.getElementById('fpIcone').value=p.icone;
+  document.getElementById('fpDescCourte').value=p.descCourte;
+  document.getElementById('fpDescLongue').value=p.descLongue||'';
+  bgSelectionne=p.bg||'bg1';badgeSelectionne=p.badge||'';
+  document.querySelectorAll('.bg-opt').forEach(b=>b.classList.toggle('sel',b.classList.contains(p.bg)));
+  document.querySelectorAll('.badge-opt').forEach(b=>b.classList.toggle('sel',b.textContent.trim()===(p.badge||'Aucun')));
+  document.getElementById('formAjout').classList.add('visible');
+  document.getElementById('formAjout').scrollIntoView({behavior:'smooth'});
+}
+
+async function supprimerProduit(id){
+  if(!confirm('Supprimer cette prière définitivement ?'))return;
+  produits=produits.filter(p=>p.id!==id);
+  await sauveProduits();rendreProduitsList();rendreProduits(filtreActuel);showToast('Prière supprimée.');
+}
+
+/* COUVERTURES */
+function rendreCouvertures(){
+  const el=document.getElementById('couverturesGrille');
+  if(!produits.length){el.innerHTML='<div class="admin-vide">Aucun produit.</div>';return;}
+  el.innerHTML=produits.map(p=>`
+    <div class="couv-item">
+      <div class="couv-prev" id="prev-${p.id}">
+        ${p.coverUrl?`<img src="${p.coverUrl}" alt="${p.titre}">`:`<div style="font-size:2.5rem">${p.icone}</div>`}
+      </div>
+      <div class="couv-nom">${p.titre}</div>
+      <input class="couv-input" id="url-${p.id}" type="text" placeholder="Coller une URL d'image…" value="${p.coverUrl}" onchange="previewCover('${p.id}')" />
+      <div class="couv-actions">
+        <button class="btn-ap sm" onclick="sauverCover('${p.id}')">💾 Valider URL</button>
+        <label class="btn-ap sm sec" style="cursor:pointer;">📁 Fichier
+          <input type="file" accept="image/*" style="display:none" onchange="chargeFichier(this,'${p.id}')" />
+        </label>
+        ${p.coverUrl?`<button class="btn-ap sm danger" onclick="supprimerCover('${p.id}')">✕</button>`:''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function previewCover(id){
+  const url=document.getElementById('url-'+id).value.trim();
+  const prev=document.getElementById('prev-'+id);
+  const p=produits.find(x=>x.id===id);
+  prev.innerHTML=url?`<img src="${url}" alt="">`:`<div style="font-size:2.5rem">${p?p.icone:'📄'}</div>`;
+}
+async function sauverCover(id){
+  const url=document.getElementById('url-'+id).value.trim();
+  const idx=produits.findIndex(p=>p.id===id);
+  if(idx>-1){produits[idx].coverUrl=url;await sauveProduits();rendreProduits(filtreActuel);rendreCouvertures();showToast('Couverture mise à jour ✝');}
+}
+function chargeFichier(input,id){
+  const file=input.files[0];if(!file)return;
+  if(file.size>2*1024*1024){showToast('Image trop grande (max 2 Mo). Utilisez une URL.');return;}
+  const reader=new FileReader();
+  reader.onload=async e=>{
+    const idx=produits.findIndex(p=>p.id===id);
+    if(idx>-1){produits[idx].coverUrl=e.target.result;await sauveProduits();rendreProduits(filtreActuel);rendreCouvertures();showToast('Couverture chargée ✝');}
+  };
+  reader.readAsDataURL(file);
+}
+async function supprimerCover(id){
+  const idx=produits.findIndex(p=>p.id===id);
+  if(idx>-1){produits[idx].coverUrl='';await sauveProduits();rendreProduits(filtreActuel);rendreCouvertures();showToast('Couverture supprimée.');}
+}
+
+/* TÉLÉCHARGEMENTS */
+function rendreTelechargements(){
+  const el=document.getElementById('telechargementsListe');
+  if(!telechargements.length){el.innerHTML='<div class="admin-vide">Aucun téléchargement pour le moment.</div>';return;}
+  el.innerHTML=telechargements.map(t=>{
+    const montant=t.montantXOF?`${t.montantXOF.toLocaleString('fr-FR')} FCFA`:(t.montant?`${t.montant} €`:'');
+    return `<div style="background:var(--nuit2);border:1px solid ${t.payant?'rgba(201,168,76,.35)':'rgba(201,168,76,.15)'};padding:1.2rem;margin-bottom:.8rem;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.8rem;">
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:.85rem;color:var(--blanc);margin-bottom:.3rem;">${t.payant?'💰':'📥'} ${t.produitTitre} ${t.payant&&montant?`— <span style="color:var(--or-sombre)">${montant}</span>`:''}</div>
+          <div style="font-size:.82rem;color:var(--creme2);opacity:.6;font-family:'IM Fell English',serif;font-style:italic;">${t.date||''}</div>
+          ${t.transactionRef?`<div style="font-size:.75rem;color:var(--or);opacity:.7;margin-top:.2rem;font-family:'Cinzel',serif;letter-spacing:.08em;">Réf : <strong>${t.transactionRef}</strong></div>`:''}
+        </div>
+        <span class="bs ${t.payant?'env':'att'}">${t.payant?'💰 Payé':'🎁 Gratuit'}</span>
+      </div>
+      <div style="margin-top:1rem;padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06);display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:.2rem;">Personne</div>
+          <div style="font-size:.9rem;color:var(--blanc);">${t.nomClient}</div>
+        </div>
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:.2rem;">E-mail</div>
+          <a href="mailto:${t.emailClient}?subject=Votre PDF — ${encodeURIComponent(t.produitTitre)}&body=Bonjour ${encodeURIComponent(t.nomClient)},%0A%0AVoici votre PDF en pièce jointe.%0A%0ABéni(e) soyez-vous.%0ASanctuaire des Prières" style="font-size:.9rem;color:var(--or-sombre);text-decoration:none;">${t.emailClient}</a>
+        </div>
+        ${t.phoneClient?`<div><div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:.2rem;">Téléphone</div><div style="font-size:.9rem;color:var(--blanc);">${t.phoneClient}</div></div>`:''}
+        <div style="margin-left:auto;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="btn-ap sm danger" onclick="supprimerTelechargement('${t.id}')">🗑</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function supprimerTelechargement(id){
+  if(!confirm('Supprimer cet enregistrement de téléchargement ?'))return;
+  try{ await REF_TELECHARGEMENTS.doc(id).delete(); }
+  catch(e){ telechargements=telechargements.filter(t=>t.id!==id); }
+  telechargements=telechargements.filter(t=>t.id!==id);
+  rendreTelechargements();rendreDashboard();
+  showToast('Téléchargement supprimé.');
+}
+
+async function purgerTelechargements(){
+  try{
+    const batch=db.batch();
+    telechargements.forEach(t=>batch.delete(REF_TELECHARGEMENTS.doc(t.id)));
+    await batch.commit();
+  }catch(e){ console.warn(e); }
+  telechargements=[];
+  rendreTelechargements();rendreDashboard();
+  showToast('Historique des téléchargements effacé.');
+}
+
+/* DONS */
+function rendreDons(){
+  const el=document.getElementById('donsListe');
+  if(!dons.length){el.innerHTML='<div class="admin-vide">Aucun don reçu pour le moment.</div>';return;}
+  el.innerHTML=dons.map(d=>{
+    const montant=d.montantXOF?`${d.montantXOF.toLocaleString('fr-FR')} FCFA`:`${d.montant} €`;
+    return `<div style="background:var(--nuit2);border:1px solid rgba(39,174,96,.25);padding:1.2rem;margin-bottom:.8rem;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.8rem;">
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:.85rem;color:var(--blanc);margin-bottom:.3rem;">💝 Don — <span style="color:#27ae60;">${montant}</span></div>
+          <div style="font-size:.82rem;color:var(--creme2);opacity:.6;font-family:'IM Fell English',serif;font-style:italic;">${d.date||''}</div>
+          ${d.transactionRef?`<div style="font-size:.75rem;color:var(--or);opacity:.7;margin-top:.2rem;font-family:'Cinzel',serif;letter-spacing:.08em;">Réf : <strong>${d.transactionRef}</strong></div>`:''}
+        </div>
+        <span class="bs env">✓ Reçu</span>
+      </div>
+      <div style="margin-top:1rem;padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06);display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:.2rem;">Donateur</div>
+          <div style="font-size:.9rem;color:var(--blanc);">${d.nomDonateur}</div>
+        </div>
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:.2rem;">E-mail</div>
+          <a href="mailto:${d.emailDonateur}" style="font-size:.9rem;color:var(--or-sombre);text-decoration:none;">${d.emailDonateur}</a>
+        </div>
+        ${d.phoneDonateur?`<div><div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:.2rem;">Téléphone</div><div style="font-size:.9rem;color:var(--blanc);">${d.phoneDonateur}</div></div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* PARAMÈTRES */
+function rendreParams(){
+  document.getElementById('pFedaKey').value=settings.fedaKey||'';
+  document.getElementById('pFedaEnv').value=settings.fedaEnv||'live';
+  document.getElementById('pTauxXOF').value=settings.tauxXOF||655;
+  document.getElementById('pMontantsDon').value=settings.montantsDon||'1000,2500,5000,10000';
+  document.getElementById('pWhatsapp').value=settings.whatsapp||'';
+  ['pAncienMdp','pNouveauMdp','pConfirmMdp'].forEach(id=>document.getElementById(id).value='');
+}
+
+async function sauvegarderParams(){
+  settings.fedaKey=document.getElementById('pFedaKey').value.trim();
+  settings.fedaEnv=document.getElementById('pFedaEnv').value;
+  settings.tauxXOF=parseFloat(document.getElementById('pTauxXOF').value)||655;
+  settings.montantsDon=document.getElementById('pMontantsDon').value.trim()||'1000,2500,5000,10000';
+  settings.whatsapp=document.getElementById('pWhatsapp').value.trim();
+  const ancien=document.getElementById('pAncienMdp').value;
+  const nouveau=document.getElementById('pNouveauMdp').value;
+  const conf=document.getElementById('pConfirmMdp').value;
+  if(ancien||nouveau||conf){
+    if(ancien!==settings.password){showToast('Mot de passe actuel incorrect.');return;}
+    if(!nouveau){showToast('Saisissez un nouveau mot de passe.');return;}
+    if(nouveau!==conf){showToast('Les mots de passe ne correspondent pas.');return;}
+    settings.password=nouveau;
+    showToast('Paramètres et mot de passe mis à jour ✝');
+  }else{
+    showToast('Paramètres sauvegardés dans Firestore ✝');
+  }
+  await sauveSettings();
+  ['pAncienMdp','pNouveauMdp','pConfirmMdp'].forEach(id=>document.getElementById(id).value='');
+}
+
+/* =========================================================
+   DÉMARRAGE
+========================================================= */
+// Afficher les produits du cache immédiatement, puis sync Firestore
+rendreProduits();
+chargerDepuisFirestore();
+</script>
+</body>
+</html>
