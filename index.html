@@ -1349,6 +1349,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+db.settings({ignoreUndefinedProperties: true});
 
 // Refs Firestore
 const REF_PRODUITS        = db.collection('sdp_config').doc('produits');
