@@ -1206,8 +1206,14 @@
               <input type="text" id="foIcone" placeholder="📿" />
             </div>
             <div class="admin-champ admin-champ-full">
-              <label>🔗 URL de la photo <em style="opacity:.6;font-size:.8em;">(lien direct vers une image)</em></label>
-              <input type="text" id="foImageUrl" placeholder="https://..." />
+              <label>📷 Photo de l'article</label>
+              <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;">
+                <input type="text" id="foImageUrl" placeholder="https://... (ou envoyez un fichier)" style="flex:1;min-width:180px;" />
+                <label class="btn-ap sm sec" style="cursor:pointer;margin:0;">📁 Envoyer un fichier
+                  <input type="file" accept="image/*" style="display:none" onchange="chargeFichierObjet(this)" />
+                </label>
+              </div>
+              <div id="foImagePreview" style="margin-top:.6rem;"></div>
             </div>
             <div class="admin-champ admin-champ-full">
               <label>Description courte *</label>
@@ -1350,6 +1356,20 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 db.settings({ignoreUndefinedProperties: true});
+
+// Config Cloudinary (upload d'images — couvertures & objets)
+const CLOUDINARY_CLOUD_NAME='dyekcsoax';
+const CLOUDINARY_UPLOAD_PRESET='sanctuaire_upload';
+async function uploadVersCloudinary(file){
+  const url=`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+  const form=new FormData();
+  form.append('file',file);
+  form.append('upload_preset',CLOUDINARY_UPLOAD_PRESET);
+  const res=await fetch(url,{method:'POST',body:form});
+  if(!res.ok)throw new Error('Échec upload Cloudinary: '+res.status);
+  const data=await res.json();
+  return data.secure_url;
+}
 
 // Refs Firestore
 const REF_PRODUITS        = db.collection('sdp_config').doc('produits');
@@ -2632,11 +2652,29 @@ function toggleFormAjoutObjet(){
   ['foTitre','foDescCourte','foDescLongue','foIcone','foImageUrl','foPrix','foPrixXOF'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('foCategorie').value='chapelets';
   document.getElementById('foStock').value='oui';
+  document.getElementById('foImagePreview').innerHTML='';
   bgSelectionneObjet='bg1';
   document.querySelectorAll('#bgOptsObjet .bg-opt').forEach(b=>b.classList.toggle('sel',b.classList.contains('bg1')));
   f.classList.add('visible');f.scrollIntoView({behavior:'smooth'});
 }
 function annulerFormObjet(){document.getElementById('formAjoutObjet').classList.remove('visible');document.getElementById('editObjetId').value='';}
+
+async function chargeFichierObjet(input){
+  const file=input.files[0];if(!file)return;
+  if(file.size>10*1024*1024){showToast('Image trop grande (max 10 Mo).');return;}
+  const prev=document.getElementById('foImagePreview');
+  prev.innerHTML='<span style="font-size:.85rem;opacity:.6;">⏳ Envoi en cours…</span>';
+  try{
+    const url=await uploadVersCloudinary(file);
+    document.getElementById('foImageUrl').value=url;
+    prev.innerHTML=`<img src="${url}" style="max-height:90px;border:1px solid rgba(201,168,76,.3);">`;
+    showToast('Photo envoyée sur Cloudinary ✝');
+  }catch(e){
+    console.error('Upload objet:',e);
+    prev.innerHTML='';
+    showToast('Échec de l\'envoi de l\'image. Réessayez.');
+  }
+}
 
 async function sauvegarderObjet(){
   const titre=document.getElementById('foTitre').value.trim();
@@ -2684,6 +2722,7 @@ function editerObjet(id){
   document.getElementById('foStock').value=o.stock===false?'non':'oui';
   document.getElementById('foIcone').value=o.icone||'';
   document.getElementById('foImageUrl').value=o.imageUrl||'';
+  document.getElementById('foImagePreview').innerHTML=o.imageUrl?`<img src="${o.imageUrl}" style="max-height:90px;border:1px solid rgba(201,168,76,.3);">`:'';
   document.getElementById('foDescCourte').value=o.descCourte;
   document.getElementById('foDescLongue').value=o.descLongue||'';
   bgSelectionneObjet=o.bg||'bg1';
@@ -2765,15 +2804,26 @@ async function sauverCover(id){
   const idx=produits.findIndex(p=>p.id===id);
   if(idx>-1){produits[idx].coverUrl=url;await sauveProduits();rendreProduits(filtreActuel);rendreCouvertures();showToast('Couverture mise à jour ✝');}
 }
-function chargeFichier(input,id){
+async function chargeFichier(input,id){
   const file=input.files[0];if(!file)return;
-  if(file.size>2*1024*1024){showToast('Image trop grande (max 2 Mo). Utilisez une URL.');return;}
-  const reader=new FileReader();
-  reader.onload=async e=>{
+  if(file.size>10*1024*1024){showToast('Image trop grande (max 10 Mo).');return;}
+  const prev=document.getElementById('prev-'+id);
+  const ancien=prev.innerHTML;
+  prev.innerHTML='<div style="font-size:1rem;opacity:.6;">⏳ Envoi…</div>';
+  try{
+    const url=await uploadVersCloudinary(file);
     const idx=produits.findIndex(p=>p.id===id);
-    if(idx>-1){produits[idx].coverUrl=e.target.result;await sauveProduits();rendreProduits(filtreActuel);rendreCouvertures();showToast('Couverture chargée ✝');}
-  };
-  reader.readAsDataURL(file);
+    if(idx>-1){
+      produits[idx].coverUrl=url;
+      await sauveProduits();
+      rendreProduits(filtreActuel);rendreCouvertures();
+      showToast('Couverture chargée sur Cloudinary ✝');
+    }
+  }catch(e){
+    console.error('Upload couverture:',e);
+    prev.innerHTML=ancien;
+    showToast('Échec de l\'envoi de l\'image. Réessayez.');
+  }
 }
 async function supprimerCover(id){
   const idx=produits.findIndex(p=>p.id===id);
